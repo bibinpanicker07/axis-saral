@@ -56,6 +56,7 @@ public class StakeHolder {
     @Column(name = "salary")
     private  Double salary;
     
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "project_id")
     Project project;

@@ -38,7 +38,7 @@ public class Project {
 	 //flow chart needed
 	 
 
-
+	 
 	 @OneToMany(mappedBy = "project",fetch = FetchType.LAZY,
 				cascade = CascadeType.ALL)
 	 private Set<Module> modules;
@@ -76,24 +76,6 @@ public class Project {
 	
 	
 
-//	public Manager getManager() {
-//		return manager;
-//	}
-//
-//	public void setManager(Manager manager) {
-//		this.manager = manager;
-//	}
-//
-//	public Set<Employee> getSupportTeam() {
-//		return supportTeam;
-//	}
-//
-//	public void setSupportTeam(Set<Employee> supportTeam) {
-//		this.supportTeam = supportTeam;
-//	}
-
-
-
 	public Set<Module> getModules() {
 		return modules;
 	}
@@ -116,6 +98,7 @@ public class Project {
 	}
 
 
+	
 	
 	 
 	 

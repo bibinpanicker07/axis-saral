@@ -28,18 +28,19 @@ public class Module {
 
 	 @Column(name = "module_name")
 	 private @NotBlank String moduleName;
-	 
+
 	 @JsonIgnore
 	 @ManyToOne(fetch = FetchType.LAZY, optional = false)
 	 @JoinColumn(name = "project_id", nullable = false)
 	 Project project;
 
+	 
 	 @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL,mappedBy = "module")
 	 @JoinColumn(name = "manager_id")
 	 private  Manager manager;
 	 
+
 	 
-	 @JsonIgnore
 	 @OneToMany(mappedBy = "module",fetch = FetchType.LAZY)
 	 private Set<Employee> employees;
 	 

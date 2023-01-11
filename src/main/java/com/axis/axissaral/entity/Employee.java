@@ -54,9 +54,8 @@ public class Employee {
     @Column(name = "project_name")
     private @NotBlank String projectName;
     
-    
-    @ManyToOne()
     @JsonIgnore
+    @ManyToOne()
     @JoinColumn(name = "module_id", referencedColumnName = "id")
     private Module module;
 
