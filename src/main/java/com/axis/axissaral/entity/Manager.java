@@ -33,7 +33,7 @@ public class Manager {
     private @NotBlank String lastName;
 
     @Column(name = "email")
-    private @NotBlank String email;
+    private @NotBlank String username;
     
     @Column(name = "password")
     private @NotBlank String password;
@@ -77,12 +77,14 @@ public class Manager {
 		this.lastName = lastName;
 	}
 
-	public String getEmail() {
-		return email;
+
+
+	public String getUsername() {
+		return username;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -144,13 +146,13 @@ public class Manager {
 
 
 
-	public Manager(@NotBlank String firstName, @NotBlank String lastName, @NotBlank String email,
+	public Manager(@NotBlank String firstName, @NotBlank String lastName, @NotBlank String username,
 			@NotBlank String password, @NotBlank String gender, @NotBlank String status, LocalDate dateOfJoining,
 			Long mobileNumber, @NotBlank String designation, @NotBlank String projectName, Module module) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.email = email;
+		this.username = username;
 		this.password = password;
 		this.gender = gender;
 		this.status = status;

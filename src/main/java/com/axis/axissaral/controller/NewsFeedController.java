@@ -12,36 +12,27 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.axis.axissaral.dto.employee.AddEmployeeDto;
-import com.axis.axissaral.entity.Employee;
-import com.axis.axissaral.service.EmployeeService;
+import com.axis.axissaral.entity.NewsFeed;
+import com.axis.axissaral.service.NewsFeedService;
 
 @RestController
-
 @CrossOrigin("http://localhost:3000")
-public class EmployeeController {
+public class NewsFeedController {
 	
 	@Autowired
-	private EmployeeService employeeService;
+	private NewsFeedService newsFeedService;
 	
-	@PostMapping("/employee/add-employee")
-	public ResponseEntity<String> addEmployee(@RequestBody AddEmployeeDto empDto){
-		
-		employeeService.addEmployee(empDto);
-		
-		return new ResponseEntity<String>("Added Successfully", HttpStatus.CREATED);
+	@PostMapping("/news/add")
+	public ResponseEntity<String> addEmployee(@RequestBody NewsFeed newsFeed){
+		newsFeedService.addFeed(newsFeed);
+		return new ResponseEntity<String>("News Added Successfully", HttpStatus.CREATED);
 
 	}
-	
-    @GetMapping("/employee")
-    public List<Employee> getAllEmployees(){
 
-    	
+	@GetMapping("/news")
+    public List<NewsFeed> getAllFeeds(){
 
-        return employeeService.allEmployees();
+        return newsFeedService.getAllFeeds();
     }
-	
-	
-	
 
 }
