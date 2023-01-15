@@ -25,14 +25,18 @@ public class CommentService {
 	@Autowired
 	NewsFeedRepository newsFeedRepository;
 	
-	public void addComment(CommentDto commentDto) {
+	public void addCommentByEmployee(CommentDto commentDto) {
 		Comment comment = new Comment();
 		comment.setMessage(commentDto.getMessage());
-		if(employeeRepository.findById(commentDto.getEmpId()).isPresent())
-		comment.setEmployee(employeeRepository.getById(commentDto.getEmpId()));
-		if(managerRepository.findById(commentDto.getManagerId()).isPresent())
-		comment.setManager(managerRepository.findById(commentDto.getManagerId()).get());
-		
+		comment.setEmployee(employeeRepository.getById(commentDto.getEmpId()));		
+		comment.setNewsFeed(newsFeedRepository.getById(commentDto.getFeedId()));
+		commentRepository.save(comment);
+	}
+	
+	public void addCommentByManager(CommentDto commentDto) {
+		Comment comment = new Comment();
+		comment.setMessage(commentDto.getMessage());
+		comment.setManager(managerRepository.getById(commentDto.getEmpId()));		
 		comment.setNewsFeed(newsFeedRepository.getById(commentDto.getFeedId()));
 		commentRepository.save(comment);
 	}

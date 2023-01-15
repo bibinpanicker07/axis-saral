@@ -1,14 +1,17 @@
 package com.axis.axissaral.entity;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
@@ -59,6 +62,14 @@ public class Employee {
     @JoinColumn(name = "module_id", referencedColumnName = "id")
     private Module module;
 
+    @JsonIgnore
+	@OneToMany(mappedBy = "employee",fetch = FetchType.LAZY)
+	private Set<Comment> comments;
+    
+    @JsonIgnore
+	@OneToMany(mappedBy = "employee",fetch = FetchType.LAZY)
+	private Set<FileDB> files;
+    
 	public String getFirstName() {
 		return firstName;
 	}
@@ -154,21 +165,20 @@ public class Employee {
 		super();
 	}
 
-	public Employee(@NotBlank String firstName, @NotBlank String lastName, @NotBlank String username,
-			@NotBlank String password, @NotBlank String gender, @NotBlank String status, LocalDate dateOfJoining,
-			Long mobileNumber, @NotBlank String designation, @NotBlank String projectName, Module module) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.username = username;
-		this.password = password;
-		this.gender = gender;
-		this.status = status;
-		this.dateOfJoining = dateOfJoining;
-		this.mobileNumber = mobileNumber;
-		this.designation = designation;
-		this.projectName = projectName;
-		this.module = module;
+	public Integer getEmpId() {
+		return empId;
+	}
+
+	public void setEmpId(Integer empId) {
+		this.empId = empId;
+	}
+
+	public Set<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(Set<Comment> comments) {
+		this.comments = comments;
 	}
 
         

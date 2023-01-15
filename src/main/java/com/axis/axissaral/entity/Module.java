@@ -35,7 +35,15 @@ public class Module {
 	 Project project;
 
 	 
-	 @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL,mappedBy = "module")
+	 public Integer getModuleId() {
+		return moduleId;
+	}
+
+	public void setModuleId(Integer moduleId) {
+		this.moduleId = moduleId;
+	}
+
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL,mappedBy = "module")
 	 @JoinColumn(name = "manager_id")
 	 private  Manager manager;
 	 

@@ -1,6 +1,7 @@
 package com.axis.axissaral.entity;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
@@ -60,6 +62,30 @@ public class Manager {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "module_id")
     private Module module;
+    
+    @JsonIgnore
+	@OneToMany(mappedBy = "manager",fetch = FetchType.LAZY)
+	private Set<Comment> comments;
+    
+    @JsonIgnore
+	@OneToMany(mappedBy = "manager",fetch = FetchType.LAZY)
+	private Set<FileDB> files;
+
+	public Integer getManagerId() {
+		return managerId;
+	}
+
+	public void setManagerId(Integer managerId) {
+		this.managerId = managerId;
+	}
+
+	public Set<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(Set<Comment> comments) {
+		this.comments = comments;
+	}
 
 	public String getFirstName() {
 		return firstName;
@@ -78,6 +104,14 @@ public class Manager {
 	}
 
 
+
+	public Set<FileDB> getFiles() {
+		return files;
+	}
+
+	public void setFiles(Set<FileDB> files) {
+		this.files = files;
+	}
 
 	public String getUsername() {
 		return username;
@@ -145,23 +179,6 @@ public class Manager {
 	}
 
 
-
-	public Manager(@NotBlank String firstName, @NotBlank String lastName, @NotBlank String username,
-			@NotBlank String password, @NotBlank String gender, @NotBlank String status, LocalDate dateOfJoining,
-			Long mobileNumber, @NotBlank String designation, @NotBlank String projectName, Module module) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.username = username;
-		this.password = password;
-		this.gender = gender;
-		this.status = status;
-		this.dateOfJoining = dateOfJoining;
-		this.mobileNumber = mobileNumber;
-		this.designation = designation;
-		this.projectName = projectName;
-		this.module = module;
-	}
 
 	public Module getModule() {
 		return module;

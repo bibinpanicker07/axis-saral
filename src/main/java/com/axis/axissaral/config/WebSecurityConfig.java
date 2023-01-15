@@ -57,7 +57,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         	.cors()
         	.disable()
         	.authorizeRequests()
-        	.antMatchers("/token").permitAll()
+        	.antMatchers("/manager/comment/add","/employee/comment/add","/news/add","/feed-image/add","/feed-image/{feedId}").permitAll()
         	.antMatchers(HttpMethod.OPTIONS).permitAll()
         	.anyRequest().authenticated()
         	.and()

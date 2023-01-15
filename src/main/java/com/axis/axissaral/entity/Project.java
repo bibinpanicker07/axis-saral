@@ -50,6 +50,14 @@ public class Project {
 
 	 
 
+	public Integer getProjectId() {
+		return projectId;
+	}
+
+	public void setProjectId(Integer projectId) {
+		this.projectId = projectId;
+	}
+
 	public String getProjectName() {
 		return projectName;
 	}

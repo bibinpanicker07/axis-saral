@@ -62,6 +62,14 @@ public class StakeHolder {
     Project project;
 
 
+	public Integer getStakeHolderId() {
+		return stakeHolderId;
+	}
+
+	public void setStakeHolderId(Integer stakeHolderId) {
+		this.stakeHolderId = stakeHolderId;
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}

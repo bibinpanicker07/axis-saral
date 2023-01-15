@@ -17,7 +17,7 @@ import com.axis.axissaral.service.ProjectService;
 
 
 @RestController
-@RequestMapping("/project")
+
 @CrossOrigin("http://localhost:3000")
 public class ProjectController {
 	

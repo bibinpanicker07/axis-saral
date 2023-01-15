@@ -6,7 +6,6 @@ public class CommentDto {
 	
 	 private @NotBlank String message;
 	 private Integer empId;
-	 private Integer managerId;
 	 private Integer feedId;
 	public String getMessage() {
 		return message;
@@ -19,12 +18,6 @@ public class CommentDto {
 	}
 	public void setEmpId(Integer empId) {
 		this.empId = empId;
-	}
-	public Integer getManagerId() {
-		return managerId;
-	}
-	public void setManagerId(Integer managerId) {
-		this.managerId = managerId;
 	}
 	public Integer getFeedId() {
 		return feedId;
