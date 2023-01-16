@@ -8,11 +8,12 @@ import javax.persistence.Lob;
 public class ProfileImage {
 
 	@Id
-	private String userId;
-	
 	private String fileName;
 	private String fileType;
-	
+	private Integer employeeId;
+	private Integer managerId;
+	private Integer stakeHolderId;
+
 	@Lob
 	private byte[] data;
 
@@ -20,20 +21,6 @@ public class ProfileImage {
 		
 	}
 
-	public ProfileImage(String userId, String fileName, String fileType, byte[] data) {
-		this.userId = userId;
-		this.fileName = fileName;
-		this.fileType = fileType;
-		this.data = data;
-	}
-
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
 
 	public String getFileName() {
 		return fileName;
@@ -58,5 +45,30 @@ public class ProfileImage {
 	public void setData(byte[] data) {
 		this.data = data;
 	}
+
+	public Integer getEmployeeId() {
+		return employeeId;
+	}
+
+	public void setEmployeeId(Integer employeeId) {
+		this.employeeId = employeeId;
+	}
+
+	public Integer getManagerId() {
+		return managerId;
+	}
+
+	public void setManagerId(Integer managerId) {
+		this.managerId = managerId;
+	}
+
+	public Integer getStakeHolderId() {
+		return stakeHolderId;
+	}
+
+	public void setStakeHolderId(Integer stakeHolderId) {
+		this.stakeHolderId = stakeHolderId;
+	}
+	
 	
 }

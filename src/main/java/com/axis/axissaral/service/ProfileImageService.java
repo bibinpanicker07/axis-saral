@@ -21,17 +21,59 @@ public class ProfileImageService  {
 	private ProfileImageRepository profileImageRepository;
 
 	
-	public ProfileImage getProfileImageById(String userId) {
-		return profileImageRepository.findById(userId).orElseThrow(() -> new ProfileImageNotFoundException("Image not Exist for User ID: " + userId));
+	public ProfileImage getEmployeeProfileImageById(Integer userId) {
+		return profileImageRepository.findByemployeeId(userId);
+	}
+	public ProfileImage getManagerProfileImageById(Integer userId) {
+		return profileImageRepository.findBymanagerId(userId);
+	}
+	public ProfileImage getStakeHolderProfileImageById(Integer userId) {
+		return profileImageRepository.findBystakeHolderId(userId);
 	}
 
-	public void addProfileImage(String userId, MultipartFile file) {
+	public void addEmployeeProfileImage(Integer userId, MultipartFile file) {
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 		try {
 			if(fileName.contains("..")) {
 				throw new ProfileImageStorageException("Filename contains Invalid Path Sequence" + fileName);
 			}
-			ProfileImage profileImage = new ProfileImage(userId, fileName, file.getContentType(), file.getBytes());
+			ProfileImage profileImage = new ProfileImage();
+			profileImage.setEmployeeId(userId);
+			profileImage.setFileName(fileName);
+			profileImage.setFileType(file.getContentType());
+			profileImage.setData(file.getBytes());
+			profileImageRepository.save(profileImage);
+		} catch(IOException e) {
+			throw new ProfileImageStorageException("Could not store file " + fileName + ". Please try again!");
+		}
+	}
+	public void addManagerProfileImage(Integer userId, MultipartFile file) {
+		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+		try {
+			if(fileName.contains("..")) {
+				throw new ProfileImageStorageException("Filename contains Invalid Path Sequence" + fileName);
+			}
+			ProfileImage profileImage = new ProfileImage();
+			profileImage.setManagerId(userId);
+			profileImage.setFileName(fileName);
+			profileImage.setFileType(file.getContentType());
+			profileImage.setData(file.getBytes());
+			profileImageRepository.save(profileImage);
+		} catch(IOException e) {
+			throw new ProfileImageStorageException("Could not store file " + fileName + ". Please try again!");
+		}
+	}
+	public void addStakeholderProfileImage(Integer userId, MultipartFile file) {
+		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+		try {
+			if(fileName.contains("..")) {
+				throw new ProfileImageStorageException("Filename contains Invalid Path Sequence" + fileName);
+			}
+			ProfileImage profileImage = new ProfileImage();
+			profileImage.setStakeHolderId(userId);
+			profileImage.setFileName(fileName);
+			profileImage.setFileType(file.getContentType());
+			profileImage.setData(file.getBytes());
 			profileImageRepository.save(profileImage);
 		} catch(IOException e) {
 			throw new ProfileImageStorageException("Could not store file " + fileName + ". Please try again!");
