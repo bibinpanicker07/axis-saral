@@ -26,7 +26,7 @@ public class Manager {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer managerId;
+    private Integer Id;
 
     @Column(name = "first_name")
     private @NotBlank String firstName;
@@ -71,12 +71,12 @@ public class Manager {
 	@OneToMany(mappedBy = "manager",fetch = FetchType.LAZY)
 	private Set<FileDB> files;
 
-	public Integer getManagerId() {
-		return managerId;
+	public Integer getId() {
+		return Id;
 	}
 
-	public void setManagerId(Integer managerId) {
-		this.managerId = managerId;
+	public void setId(Integer Id) {
+		this.Id = Id;
 	}
 
 	public Set<Comment> getComments() {

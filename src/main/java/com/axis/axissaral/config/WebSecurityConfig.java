@@ -57,7 +57,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         	.cors()
         	.disable()
         	.authorizeRequests()
-        	.antMatchers("/add","/employee","/token","/allprojects","/stakeholder/profile-image/add","/stakeHolder/add","/employee/files/employee.pdf","/manager/profile-image/add","/employee/profile-image/add","/employee/addemployee","/manager/comment/add","/employee/comment/add","/news/add","/feed-image/add","/feed-image/{feedId}").permitAll()
+        	.antMatchers("/employee/files/Get_Started_With_Smallpdf (1).pdf","/employee/upload","/send","/add","/manager","/employee","/token","/allprojects","/stakeholder/profile-image/add","/stakeHolder/add","/employee/files/employee.pdf","/manager/profile-image/add","/employee/profile-image/add","/employee/addemployee","/manager/comment/add","/employee/comment/add","/news/add","/feed-image/add","/feed-image/{feedId}").permitAll()
         	.antMatchers(HttpMethod.OPTIONS).permitAll()
         	.anyRequest().authenticated()
         	.and()

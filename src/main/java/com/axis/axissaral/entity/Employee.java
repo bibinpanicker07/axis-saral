@@ -25,7 +25,7 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer empId;
+    private Integer Id;
 
     @Column(name = "first_name")
     private @NotBlank String firstName;
@@ -165,12 +165,12 @@ public class Employee {
 		super();
 	}
 
-	public Integer getEmpId() {
-		return empId;
+	public Integer getId() {
+		return Id;
 	}
 
-	public void setEmpId(Integer empId) {
-		this.empId = empId;
+	public void setId(Integer Id) {
+		this.Id = Id;
 	}
 
 	public Set<Comment> getComments() {
