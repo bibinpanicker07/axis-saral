@@ -25,9 +25,7 @@ public class StakeHolderService {
 		stakeHolder.setEmail(stakeHolderDto.getEmail());
 		stakeHolder.setGender(stakeHolderDto.getGender());
 		stakeHolder.setStatus("ACTIVE");
-		stakeHolder.setMobileNumber(stakeHolderDto.getMobileNumber());
 		stakeHolder.setDesignation(stakeHolderDto.getDesignation());
-		stakeHolder.setSalary(stakeHolderDto.getSalary());
 		stakeHolder.setProject(projectRepository.findByprojectName(stakeHolderDto.getProjectName()));
 		
 		

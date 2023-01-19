@@ -7,34 +7,33 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-public class CustomUserDetails implements UserDetails{
+public class ManagerUserDetails implements UserDetails {
 	
-	private Employee emp;
-
+	private Manager mgr;
 	
 
-	public CustomUserDetails(Employee emp) {
+	public ManagerUserDetails(Manager mgr) {
 		super();
-		this.emp = emp;
+		this.mgr = mgr;
 	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
-		SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(emp.getStatus());
-        return List.of(simpleGrantedAuthority);
+		SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(mgr.getStatus());
+		return List.of(simpleGrantedAuthority);
 	}
 
 	@Override
 	public String getPassword() {
 		// TODO Auto-generated method stub
-		return emp.getPassword();
+		return mgr.getPassword();
 	}
 
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return emp.getUsername();
+		return mgr.getUsername();
 	}
 
 	@Override

@@ -22,24 +22,25 @@ import com.axis.axissaral.service.ProfileImageService;
 
 
 @RestController
-@CrossOrigin(value = "http://localhost:3000")
+@CrossOrigin("http://localhost:3000")
 public class ProfileImageController {
 
 	@Autowired
 	private ProfileImageService profileImageService;
 
 
-	  @GetMapping("/employee/profile-image/{userId}") public ResponseEntity<Resource>
-	  getEmployeeProfileImageById(@PathVariable Integer userId) { ProfileImage profileImage
-	  = profileImageService.getEmployeeProfileImageById(userId); return ResponseEntity.ok()
+	  @GetMapping("/employee/profile-image/{userId}")
+	  public ResponseEntity<Resource> getEmployeeProfileImageById(@PathVariable String userId) {
+		  ProfileImage profileImage = profileImageService.getEmployeeProfileImageById(userId); return ResponseEntity.ok()
 	  .contentType(MediaType.parseMediaType(profileImage.getFileType()))
 	  .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" +
 	  profileImage.getFileName() + "\"") .body(new
-	  ByteArrayResource(profileImage.getData())); }
+	  ByteArrayResource(profileImage.getData())); 
+		  }
 	  
 	  
 	  @GetMapping("/manager/profile-image/{userId}") public ResponseEntity<Resource>
-	  getManagerProfileImageById(@PathVariable Integer userId) { ProfileImage profileImage
+	  getManagerProfileImageById(@PathVariable String userId) { ProfileImage profileImage
 	  = profileImageService.getManagerProfileImageById(userId); return ResponseEntity.ok()
 	  .contentType(MediaType.parseMediaType(profileImage.getFileType()))
 	  .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" +
@@ -48,7 +49,7 @@ public class ProfileImageController {
 	  
 	  
 	  @GetMapping("/stakeholder/profile-image/{userId}") public ResponseEntity<Resource>
-	  getStakeholderProfileImageById(@PathVariable Integer userId) { ProfileImage profileImage
+	  getStakeholderProfileImageById(@PathVariable String userId) { ProfileImage profileImage
 	  = profileImageService.getStakeHolderProfileImageById(userId); return ResponseEntity.ok()
 	  .contentType(MediaType.parseMediaType(profileImage.getFileType()))
 	  .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" +
@@ -63,19 +64,19 @@ public class ProfileImageController {
 //	}
 
 	@PostMapping("/employee/profile-image/add")
-	public ResponseEntity<String> addEmployeeProfileImage(@RequestParam("userId") Integer userId,
+	public ResponseEntity<String> addEmployeeProfileImage(@RequestParam("userId") String userId,
 			@RequestParam("file") MultipartFile file) {
 		profileImageService.addEmployeeProfileImage(userId, file);
 		return new ResponseEntity<>("Profile Image Uploaded Successfully", HttpStatus.OK);
 	}
 	@PostMapping("/manager/profile-image/add")
-	public ResponseEntity<String> addManagerProfileImage(@RequestParam("userId") Integer userId,
+	public ResponseEntity<String> addManagerProfileImage(@RequestParam("userId") String userId,
 			@RequestParam("file") MultipartFile file) {
 		profileImageService.addManagerProfileImage(userId, file);
 		return new ResponseEntity<>("Profile Image Uploaded Successfully", HttpStatus.OK);
 	}
 	@PostMapping("/stakeholder/profile-image/add")
-	public ResponseEntity<String> addStakeHolderProfileImage(@RequestParam("userId") Integer userId,
+	public ResponseEntity<String> addStakeHolderProfileImage(@RequestParam("userId") String userId,
 			@RequestParam("file") MultipartFile file) {
 		profileImageService.addStakeholderProfileImage(userId, file);
 		return new ResponseEntity<>("Profile Image Uploaded Successfully", HttpStatus.OK);

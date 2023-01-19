@@ -13,6 +13,7 @@ import com.axis.axissaral.dto.employee.AddEmployeeDto;
 import com.axis.axissaral.entity.CustomUserDetails;
 import com.axis.axissaral.entity.Employee;
 import com.axis.axissaral.entity.Manager;
+import com.axis.axissaral.entity.ManagerUserDetails;
 import com.axis.axissaral.repository.EmployeeRepository;
 import com.axis.axissaral.repository.ManagerRepository;
 import com.axis.axissaral.repository.ModuleRepository;
@@ -89,15 +90,22 @@ public class EmployeeService implements UserDetailsService {
 	        return employeeRepository.findAll();
 	   }
 	 
+	 
 	 public Employee getEmployeeByEmpID(int empID) {
 		 return employeeRepository.findById(empID).get();
 	 }
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
+	
+		
 		final Employee emp = this.employeeRepository.findByUsername(username);
-		if(emp==null) {
-			throw new UsernameNotFoundException("User not found !!");
+		if(emp==null ) {
+			final Manager mng = this.managerRepository.findByUsername(username);
+			if(mng==null)
+				throw new UsernameNotFoundException("User not found !!");
+			else
+				return new ManagerUserDetails(mng);
 		}else {
 			return new CustomUserDetails(emp);
 		}

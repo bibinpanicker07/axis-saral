@@ -10,9 +10,9 @@ public class ProfileImage {
 	@Id
 	private String fileName;
 	private String fileType;
-	private Integer employeeId;
-	private Integer managerId;
-	private Integer stakeHolderId;
+	private String employeeId;
+	private String managerId;
+	private String stakeHolderId;
 
 	@Lob
 	private byte[] data;
@@ -46,27 +46,27 @@ public class ProfileImage {
 		this.data = data;
 	}
 
-	public Integer getEmployeeId() {
+	public String getEmployeeId() {
 		return employeeId;
 	}
 
-	public void setEmployeeId(Integer employeeId) {
+	public void setEmployeeId(String employeeId) {
 		this.employeeId = employeeId;
 	}
 
-	public Integer getManagerId() {
+	public String getManagerId() {
 		return managerId;
 	}
 
-	public void setManagerId(Integer managerId) {
+	public void setManagerId(String managerId) {
 		this.managerId = managerId;
 	}
 
-	public Integer getStakeHolderId() {
+	public String getStakeHolderId() {
 		return stakeHolderId;
 	}
 
-	public void setStakeHolderId(Integer stakeHolderId) {
+	public void setStakeHolderId(String stakeHolderId) {
 		this.stakeHolderId = stakeHolderId;
 	}
 	

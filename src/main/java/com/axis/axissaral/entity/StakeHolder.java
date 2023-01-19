@@ -1,22 +1,14 @@
 package com.axis.axissaral.entity;
 
-import java.util.Date;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.JoinColumn;
@@ -47,15 +39,10 @@ public class StakeHolder {
     @Column(name = "status")
     private  String status;
  
-    @Column(name = "mobile_number")
-    private  Long mobileNumber;
-    
+
     @Column(name = "designation")
     private @NotBlank String designation;
-    
-    @Column(name = "salary")
-    private  Double salary;
-    
+
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "project_id")
@@ -113,13 +100,6 @@ public class StakeHolder {
 
 
 
-	public Long getMobileNumber() {
-		return mobileNumber;
-	}
-
-	public void setMobileNumber(Long mobileNumber) {
-		this.mobileNumber = mobileNumber;
-	}
 
 	public String getDesignation() {
 		return designation;
@@ -130,14 +110,6 @@ public class StakeHolder {
 	}
 
 
-	
-	public Double getSalary() {
-		return salary;
-	}
-
-	public void setSalary(Double salary) {
-		this.salary = salary;
-	}
 	
 	
 	

@@ -6,4 +6,5 @@ import com.axis.axissaral.entity.Manager;
 
 public interface ManagerRepository extends JpaRepository<Manager, Integer>{
 
+	public Manager findByUsername(String username);
 }

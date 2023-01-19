@@ -23,6 +23,7 @@ import com.axis.axissaral.service.FeedImageService;
 
 
 @RestController
+@CrossOrigin("http://localhost:3000")
 public class FeedImageController {
 
 	@Autowired

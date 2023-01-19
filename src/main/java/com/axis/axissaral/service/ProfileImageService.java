@@ -21,17 +21,17 @@ public class ProfileImageService  {
 	private ProfileImageRepository profileImageRepository;
 
 	
-	public ProfileImage getEmployeeProfileImageById(Integer userId) {
+	public ProfileImage getEmployeeProfileImageById(String userId) {
 		return profileImageRepository.findByemployeeId(userId);
 	}
-	public ProfileImage getManagerProfileImageById(Integer userId) {
+	public ProfileImage getManagerProfileImageById(String userId) {
 		return profileImageRepository.findBymanagerId(userId);
 	}
-	public ProfileImage getStakeHolderProfileImageById(Integer userId) {
+	public ProfileImage getStakeHolderProfileImageById(String userId) {
 		return profileImageRepository.findBystakeHolderId(userId);
 	}
 
-	public void addEmployeeProfileImage(Integer userId, MultipartFile file) {
+	public void addEmployeeProfileImage(String userId, MultipartFile file) {
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 		try {
 			if(fileName.contains("..")) {
@@ -47,7 +47,7 @@ public class ProfileImageService  {
 			throw new ProfileImageStorageException("Could not store file " + fileName + ". Please try again!");
 		}
 	}
-	public void addManagerProfileImage(Integer userId, MultipartFile file) {
+	public void addManagerProfileImage(String userId, MultipartFile file) {
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 		try {
 			if(fileName.contains("..")) {
@@ -63,7 +63,7 @@ public class ProfileImageService  {
 			throw new ProfileImageStorageException("Could not store file " + fileName + ". Please try again!");
 		}
 	}
-	public void addStakeholderProfileImage(Integer userId, MultipartFile file) {
+	public void addStakeholderProfileImage(String userId, MultipartFile file) {
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 		try {
 			if(fileName.contains("..")) {
