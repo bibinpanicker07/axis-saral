@@ -23,6 +23,8 @@ import io.jsonwebtoken.ExpiredJwtException;
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 	
+	public static String CURRENT_USER = "";
+	
 	@Autowired
 	private EmployeeService employeeService;
 
@@ -45,6 +47,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
             try{
                 username = this.jwtTokenUtil.getUsernameFromToken(jwtToken);
+                CURRENT_USER=username;
             }catch (Exception e)
             {
                 e.printStackTrace();

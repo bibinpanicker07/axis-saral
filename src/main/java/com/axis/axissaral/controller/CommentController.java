@@ -21,18 +21,18 @@ public class CommentController {
 	
 	@PostMapping("/employee/comment/add")
 	public ResponseEntity<String> addComment(@RequestBody CommentDto cmt){
-		commentService.addCommentByEmployee(cmt);
+		commentService.addComment(cmt);
 		return new ResponseEntity<String>("Comment Added Successfully", HttpStatus.CREATED);
 
 	}
 	
-	@PostMapping("/manager/comment/add")
-	public ResponseEntity<String> addCommentByManager(@RequestBody CommentDto cmt){
-		commentService.addCommentByManager(cmt);
-		return new ResponseEntity<String>("Comment Added Successfully", HttpStatus.CREATED);
-
-	}
-	
+//	@PostMapping("/manager/comment/add")
+//	public ResponseEntity<String> addCommentByManager(@RequestBody CommentDto cmt){
+//		commentService.addCommentByManager(cmt);
+//		return new ResponseEntity<String>("Comment Added Successfully", HttpStatus.CREATED);
+//
+//	}
+//	
 	
 
 }

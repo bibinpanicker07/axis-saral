@@ -3,6 +3,7 @@ package com.axis.axissaral.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.axis.axissaral.config.JwtRequestFilter;
 import com.axis.axissaral.dto.comment.CommentDto;
 import com.axis.axissaral.entity.Comment;
 import com.axis.axissaral.repository.CommentRepository;
@@ -24,21 +25,19 @@ public class CommentService {
 	
 	@Autowired
 	NewsFeedRepository newsFeedRepository;
-	
-	public void addCommentByEmployee(CommentDto commentDto) {
+
+	public void addComment(CommentDto commentDto) {
+		String user = JwtRequestFilter.CURRENT_USER;
 		Comment comment = new Comment();
 		comment.setMessage(commentDto.getMessage());
-		comment.setEmployee(employeeRepository.getById(commentDto.getEmpId()));		
+		if(employeeRepository.findByUsername(user) == null) {
+			comment.setManager(managerRepository.findByUsername(user));		
+		}else {
+		comment.setEmployee(employeeRepository.findByUsername(user));	
+		}
 		comment.setNewsFeed(newsFeedRepository.getById(commentDto.getFeedId()));
 		commentRepository.save(comment);
 	}
 	
-	public void addCommentByManager(CommentDto commentDto) {
-		Comment comment = new Comment();
-		comment.setMessage(commentDto.getMessage());
-		comment.setManager(managerRepository.getById(commentDto.getEmpId()));		
-		comment.setNewsFeed(newsFeedRepository.getById(commentDto.getFeedId()));
-		commentRepository.save(comment);
-	}
 
 }
