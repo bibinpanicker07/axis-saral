@@ -23,7 +23,7 @@ public class NewsFeedService {
 		newsFeedRepository.save(feed);
 	}
 	public List<NewsFeed> getAllFeeds() {
-		return newsFeedRepository.findAll();
+		return newsFeedRepository.findAllByOrderByDateDesc();
 	}
 
 }

@@ -35,7 +35,8 @@ public class Project {
 	 @Column(name = "description")
 	 private @NotBlank String description;
 	 
-	 //flow chart needed
+	 @Column(name = "flowchart")
+	 private String flowChart;
 	 
 
 	 
@@ -83,6 +84,14 @@ public class Project {
 	}
 	
 	
+
+	public String getFlowChart() {
+		return flowChart;
+	}
+
+	public void setFlowChart(String flowChart) {
+		this.flowChart = flowChart;
+	}
 
 	public Set<Module> getModules() {
 		return modules;

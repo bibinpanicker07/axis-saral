@@ -29,6 +29,11 @@ public class Module {
 	 @Column(name = "module_name")
 	 private @NotBlank String moduleName;
 
+
+	 @Column(name = "module_description")
+	 private @NotBlank String moduleDescription;
+
+	 
 	 @JsonIgnore
 	 @ManyToOne(fetch = FetchType.LAZY, optional = false)
 	 @JoinColumn(name = "project_id", nullable = false)
@@ -79,6 +84,16 @@ public class Module {
 
 	public void setManager(Manager manager) {
 		this.manager = manager;
+	}
+	
+	
+
+	public String getModuleDescription() {
+		return moduleDescription;
+	}
+
+	public void setModuleDescription(String moduleDescription) {
+		this.moduleDescription = moduleDescription;
 	}
 
 	public Set<Employee> getEmployees() {

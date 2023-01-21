@@ -22,34 +22,38 @@ public class NewsFeed {
 	 @GeneratedValue(strategy = GenerationType.IDENTITY)
 	 @Column(name = "id")
 	 private Integer newsFeedId;
-
-	 @Column(name = "title")
-	 private @NotBlank String title;
+	 
 	 
 	 @Column(name = "description")
 	 private @NotBlank String description;
 	 
+	 @Column(name = "image")
+	 private String imageUrl;
+
 	 @Column(name = "date")
 	 private  Date date;
 	 
 	 @OneToMany(mappedBy = "newsFeed",fetch = FetchType.LAZY)
 	 private Set<Comment> comments;
 
-	public Integer getNewFeedId() {
+
+	
+	public Integer getNewsFeedId() {
 		return newsFeedId;
 	}
 
-	public void setNewFeedId(Integer newFeedId) {
-		this.newsFeedId = newFeedId;
+	public void setNewsFeedId(Integer newsFeedId) {
+		this.newsFeedId = newsFeedId;
 	}
 
-	public String getTitle() {
-		return title;
+	public String getImageUrl() {
+		return imageUrl;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
+
 
 	public String getDescription() {
 		return description;
@@ -75,31 +79,7 @@ public class NewsFeed {
 		this.comments = comments;
 	}
 
-	public NewsFeed(@NotBlank String title, @NotBlank String description, @NotBlank Date date, Set<Comment> comments) {
-		super();
-		this.title = title;
-		this.description = description;
-		this.date = date;
-		this.comments = comments;
-	}
 
-	public NewsFeed(Integer newFeedId, @NotBlank String title, @NotBlank String description, Date date) {
-		super();
-		this.newsFeedId = newFeedId;
-		this.title = title;
-		this.description = description;
-		this.date = date;
-	}
-
-	public NewsFeed(Integer newsFeedId, @NotBlank String title, @NotBlank String description, Date date,
-			Set<Comment> comments) {
-		super();
-		this.newsFeedId = newsFeedId;
-		this.title = title;
-		this.description = description;
-		this.date = date;
-		this.comments = comments;
-	}
 
 	public NewsFeed() {
 		super();

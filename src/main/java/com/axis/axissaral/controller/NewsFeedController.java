@@ -23,7 +23,7 @@ public class NewsFeedController {
 	private NewsFeedService newsFeedService;
 	
 	@PostMapping("/news/add")
-	public ResponseEntity<String> addEmployee(@RequestBody NewsFeed newsFeed){
+	public ResponseEntity<String> addFeed(@RequestBody NewsFeed newsFeed){
 		newsFeedService.addFeed(newsFeed);
 		return new ResponseEntity<String>("News Added Successfully", HttpStatus.CREATED);
 

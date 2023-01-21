@@ -19,7 +19,7 @@ public class ModuleService {
 		Module module1 = new Module();
 		module1.setModuleName(moduleDto.getModuleName());
 		module1.setProject(projectRepository.findByprojectName(moduleDto.getProjectName()));
-		
+		module1.setModuleDescription(moduleDto.getDescription());
 		moduleRepository.save(module1);
 	}
 	

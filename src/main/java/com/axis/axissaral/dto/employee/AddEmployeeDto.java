@@ -7,7 +7,6 @@ public class AddEmployeeDto {
     private  String username;
     private  String password;
     private  String gender;
-    private  String status;
     private  Long mobileNumber;
     private  String designation;    
     private String projectName;
@@ -37,12 +36,7 @@ public class AddEmployeeDto {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
-	}
+
 
 	public Long getMobileNumber() {
 		return mobileNumber;
@@ -77,14 +71,13 @@ public class AddEmployeeDto {
 		this.username = username;
 	}
 	public AddEmployeeDto(String firstName, String lastName, String username, String password, String gender,
-			String status, Long mobileNumber, String designation, String projectName, String moduleName) {
+			 Long mobileNumber, String designation, String projectName, String moduleName) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.username = username;
 		this.password = password;
 		this.gender = gender;
-		this.status = status;
 		this.mobileNumber = mobileNumber;
 		this.designation = designation;
 		this.projectName = projectName;

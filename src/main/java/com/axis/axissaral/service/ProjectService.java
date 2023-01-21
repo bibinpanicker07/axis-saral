@@ -18,13 +18,14 @@ public class ProjectService {
 	
 	public void addProject(Project project) {
 		
-		Project project1 = new Project();
-		project1.setProjectName(project.getProjectName());	
-		project1.setStatus(project.getStatus());		
-		project1.setDescription(project.getDescription());		
+//		Project project1 = new Project();
+//		project1.setProjectName(project.getProjectName());	
+//		project1.setStatus(project.getStatus());		
+//		project1.setDescription(project.getDescription());	
+//		project1.setFlowChart(project.get);
 
 		
-		projectRepository.save(project1);
+		projectRepository.save(project);
 		
 	}
 	
