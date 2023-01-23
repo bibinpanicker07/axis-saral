@@ -11,7 +11,9 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import com.axis.axissaral.entity.Employee;
+import com.axis.axissaral.entity.Manager;
 import com.axis.axissaral.repository.EmployeeRepository;
+import com.axis.axissaral.repository.ManagerRepository;
 
 
 
@@ -25,24 +27,27 @@ public class EmailService {
     @Autowired
     private EmployeeRepository employeeRepository;
     
-    public void sendSimpleEmail(
-                                String subject,
-                                String body
-    ) {
+    @Autowired
+    private ManagerRepository mangerRepository;
+    
+    public void sendSimpleEmail(String body,String subject) {
     	
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("vaidyabhagyesh@gmail.com");
-
-        List<Employee> empList = employeeRepository.findAll();
-        
-        for(Employee i :empList) {
-        message.setTo(i.getUsername());
         message.setText(body);
         message.setSubject(subject);
+        List<Employee> empList = employeeRepository.findAll();        
+        for(Employee i :empList) {
+        message.setTo(i.getUsername());
         mailSender.send(message);
-        System.out.println("Sucess");
+        }
+        List<Manager> managerList = mangerRepository.findAll();        
+        for(Manager i :managerList) {
+        message.setTo(i.getUsername());
+        mailSender.send(message);
         }
 
+        
 
     }
    

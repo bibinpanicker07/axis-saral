@@ -7,8 +7,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.axis.axissaral.config.JwtRequestFilter;
 import com.axis.axissaral.dto.employee.AddEmployeeDto;
 import com.axis.axissaral.entity.CustomUserDetails;
 import com.axis.axissaral.entity.Employee;
@@ -113,8 +116,15 @@ public class EmployeeService implements UserDetailsService {
 	}
 	 
 	 
-
-//	 
+	 public ResponseEntity<?> getCurrentEmployee() {
+			String user = JwtRequestFilter.CURRENT_USER;
+			Employee emp = employeeRepository.findByUsername(user);
+			if(emp == null) {
+		        return new ResponseEntity<>(managerRepository.findByUsername(user), HttpStatus.OK);				
+			}else {
+	        return new ResponseEntity<>(emp, HttpStatus.OK);
+			}
+	 }
 
 		
 }

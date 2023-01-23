@@ -21,6 +21,7 @@ import com.axis.axissaral.entity.JwtResponse;
 import com.axis.axissaral.service.EmployeeService;
 
 @RestController
+@CrossOrigin("http://localhost:3000")
 public class JwtAuthenticationController {
 	
 	@Autowired

@@ -41,8 +41,10 @@ public class EmployeeController {
     public Employee getEmployeeByEmpID(@PathVariable Integer id ){
         return employeeService.getEmployeeByEmpID(id);
     }
-	
-	
+	@GetMapping("/employee/")
+    public ResponseEntity<?> getCurrentEmployee(){
+        return employeeService.getCurrentEmployee();
+    }
 	
 
 }
