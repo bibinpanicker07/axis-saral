@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.axis.axissaral.config.JwtRequestFilter;
 import com.axis.axissaral.entity.Employee;
 import com.axis.axissaral.entity.FileDB;
 import com.axis.axissaral.entity.Manager;
@@ -45,10 +46,14 @@ public class FileStorageService {
 	    return fileDBRepository.save(FileDB);
 	  }
 
-  public FileDB getEmployeeFile(String name,Employee emp) {
+  public FileDB getEmployeeFile(String name) {
+		String user = JwtRequestFilter.CURRENT_USER;
+	  Employee emp = employeeRepository.findByUsername(user);
     return fileDBRepository.findBynameAndEmployee(name, emp);
   }
-  public FileDB getManagerFile(String name,Manager emp) {
+  public FileDB getManagerFile(String name) {
+		String user = JwtRequestFilter.CURRENT_USER;
+		  Manager emp = managerRepository.findByUsername(user);
 	    return fileDBRepository.findBynameAndManager(name, emp);
 	  }
 	  

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -28,18 +29,14 @@ import com.axis.axissaral.service.FileStorageService;
 
 
 
-@Controller
-@CrossOrigin("http://localhost:8081")
+@RestController
+@CrossOrigin("http://localhost:3000")
 public class FileController {
 
   @Autowired
   private FileStorageService storageService;
   
-  @Autowired 
-  private EmployeeRepository employeeRepository;
-  
-  @Autowired
-  private ManagerRepository managerRepository;
+
 
   @PostMapping("/employee/upload")
   public ResponseEntity<ResponseMessage> uploadEmployeeFile(@RequestParam("file") MultipartFile file,@RequestParam("emp") Integer empId) {
@@ -99,20 +96,18 @@ public class FileController {
   
   
   @GetMapping("employee/files/{name}")
-  public ResponseEntity<byte[]> getEmployeeFile(@PathVariable String name,@RequestParam("employee") Integer empId) {
+  public ResponseEntity<byte[]> getEmployeeFile(@PathVariable String name) {
 	  
-	 Employee emp = employeeRepository.getById(empId);
-    FileDB fileDB = storageService.getEmployeeFile(name,emp);
+    FileDB fileDB = storageService.getEmployeeFile(name);
 
     return ResponseEntity.ok()
         .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileDB.getName() + "\"")
         .body(fileDB.getData());
   }
   @GetMapping("manager/files/{name}")
-  public ResponseEntity<byte[]> getManagerFile(@PathVariable String name,@RequestParam("manager") Integer empId) {
-	  
-	 Manager emp = managerRepository.getById(empId);
-    FileDB fileDB = storageService.getManagerFile(name,emp);
+  public ResponseEntity<byte[]> getManagerFile(@PathVariable String name) {
+	
+    FileDB fileDB = storageService.getManagerFile(name);
 
     return ResponseEntity.ok()
         .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileDB.getName() + "\"")
