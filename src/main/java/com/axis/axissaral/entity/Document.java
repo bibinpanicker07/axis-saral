@@ -8,7 +8,7 @@ import javax.persistence.Lob;
 public class Document {
 
 	@Id
-	private String documentId;
+	private String documentName;
 	private String fileName;
 	private String fileType;
 	
@@ -19,19 +19,19 @@ public class Document {
 		
 	}
 
-	public Document(String documentId, String fileName, String fileType, byte[] fileData) {
-		this.documentId = documentId;
+	public Document(String documentName, String fileName, String fileType, byte[] fileData) {
+		this.documentName = documentName;
 		this.fileName = fileName;
 		this.fileType = fileType;
 		this.fileData = fileData;
 	}
 
-	public String getDocumentId() {
-		return documentId;
+	public String getdocumentName() {
+		return documentName;
 	}
 
-	public void setDocumentId(String documentId) {
-		this.documentId = documentId;
+	public void setdocumentName(String documentName) {
+		this.documentName = documentName;
 	}
 
 	public String getFileName() {

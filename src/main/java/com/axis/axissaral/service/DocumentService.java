@@ -1,6 +1,8 @@
 package com.axis.axissaral.service;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,24 @@ public class DocumentService {
 
 	public Document getDocumentById(String documentId) {
 		return documentRepository.findById(documentId).orElseThrow(() -> new DocumentNotFoundException("Document Requested By Document Id " + documentId + "Not Exists.."));
+	}
+	public List<String> getDocuments(){
+		
+		List<Document> docList = documentRepository.findAll();
+		ArrayList<String> nameList = new ArrayList<>();
+		for(Document i:docList)
+		{
+			
+			nameList.add(i.getdocumentName());
+			
+		}
+		return nameList;
+	}
+	
+	public List<Document> getDocumentnames(){
+		
+		return documentRepository.findAll();
+
 	}
 	public void addDocument(String documentId, MultipartFile file) {
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());

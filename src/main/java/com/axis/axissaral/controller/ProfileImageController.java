@@ -32,29 +32,27 @@ public class ProfileImageController {
 	  @GetMapping("/employee/profile-image/{userId}")
 	  public ResponseEntity<Resource> getEmployeeProfileImageById(@PathVariable String userId) {
 		  ProfileImage profileImage = profileImageService.getEmployeeProfileImageById(userId); return ResponseEntity.ok()
-	  .contentType(MediaType.parseMediaType(profileImage.getFileType()))
-	  .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" +
-	  profileImage.getFileName() + "\"") .body(new
-	  ByteArrayResource(profileImage.getData())); 
-		  }
+				  .contentType(MediaType.parseMediaType(profileImage.getFileType()))
+				  .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" +
+	  profileImage.getFileName() + "\"") .body(new ByteArrayResource(profileImage.getData())); 
+	  }
 	  
 	  
 	  @GetMapping("/manager/profile-image/{userId}") public ResponseEntity<Resource>
-	  getManagerProfileImageById(@PathVariable String userId) { ProfileImage profileImage
-	  = profileImageService.getManagerProfileImageById(userId); return ResponseEntity.ok()
-	  .contentType(MediaType.parseMediaType(profileImage.getFileType()))
+	  getManagerProfileImageById(@PathVariable String userId) {
+		  ProfileImage profileImage = profileImageService.getManagerProfileImageById(userId); return ResponseEntity.ok()
+				  .contentType(MediaType.parseMediaType(profileImage.getFileType()))
 	  .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" +
-	  profileImage.getFileName() + "\"") .body(new
-	  ByteArrayResource(profileImage.getData())); }
+	  profileImage.getFileName() + "\"") .body(new ByteArrayResource(profileImage.getData())); 
+	  }
 	  
 	  
 	  @GetMapping("/stakeholder/profile-image/{userId}") public ResponseEntity<Resource>
-	  getStakeholderProfileImageById(@PathVariable String userId) { ProfileImage profileImage
-	  = profileImageService.getStakeHolderProfileImageById(userId); return ResponseEntity.ok()
+	  getStakeholderProfileImageById(@PathVariable String userId) {
+		  ProfileImage profileImage = profileImageService.getStakeHolderProfileImageById(userId); return ResponseEntity.ok()
 	  .contentType(MediaType.parseMediaType(profileImage.getFileType()))
 	  .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" +
-	  profileImage.getFileName() + "\"") .body(new
-	  ByteArrayResource(profileImage.getData())); }
+	  profileImage.getFileName() + "\"") .body(new ByteArrayResource(profileImage.getData())); }
 	 
 
 //	@GetMapping("/profile-image/{userId}")
