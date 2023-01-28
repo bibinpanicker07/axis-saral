@@ -33,10 +33,44 @@ public class FileDB {
   @JoinColumn(name = "manager_id", referencedColumnName = "id")
   private Manager manager;
   
+  @ManyToOne()
+  @JoinColumn(name = "dvp_id", referencedColumnName = "id")
+  private Dvp dvp;
+  
+  @ManyToOne()
+  @JoinColumn(name = "svp_id", referencedColumnName = "id")
+  private Svp svp;
+  
   public FileDB() {
   }
+  
+  
 
-  public FileDB(String name, String type, byte[] data) {
+  public Dvp getDvp() {
+	return dvp;
+}
+
+
+
+public void setDvp(Dvp dvp) {
+	this.dvp = dvp;
+}
+
+
+
+public Svp getSvp() {
+	return svp;
+}
+
+
+
+public void setSvp(Svp svp) {
+	this.svp = svp;
+}
+
+
+
+public FileDB(String name, String type, byte[] data) {
     this.name = name;
     this.type = type;
     this.data = data;

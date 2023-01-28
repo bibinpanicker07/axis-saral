@@ -12,7 +12,7 @@ public interface ProfileImageRepository extends JpaRepository<ProfileImage, Stri
 
 	ProfileImage findByemployeeId(String id);
 	ProfileImage findBymanagerId(String id);
-
-	ProfileImage findBystakeHolderId(String id);
+	ProfileImage findBydvpId(String id);
+	ProfileImage findBysvpId(String id);
 
 }

@@ -57,7 +57,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         	.cors()
         	.disable()
         	.authorizeRequests()
-        	.antMatchers("/document/{documentId}","/documents/names","/documents","/add-document","/employee/upload","/manager/upload","employee/files/{name}","manager/files/{name}","/module/add","/manager/profile-image/{userId}","/employee/profile-image/{userId}","/employee/files/Get_Started_With_Smallpdf (1).pdf","/employee/upload","/send","/add","/manager","/token","/allprojects","/stakeholder/profile-image/add","/stakeHolder/add","/employee/files/employee.pdf","/manager/profile-image/add","/employee/profile-image/add","/employee/addemployee","/news/add","/feed-image/add","/feed-image/{feedId}").permitAll()
+        	.antMatchers("/**","/department/add","/document/{documentId}","/documents/names","/documents","/add-document","/employee/upload","/manager/upload","employee/files/{name}","manager/files/{name}","/module/add","/manager/profile-image/{userId}","/employee/profile-image/{userId}","/employee/files/Get_Started_With_Smallpdf (1).pdf","/employee/upload","/send","/add","/manager","/token","/allprojects","/stakeholder/profile-image/add","/stakeHolder/add","/employee/files/employee.pdf","/manager/profile-image/add","/employee/profile-image/add","/employee/addemployee","/news/add","/feed-image/add","/feed-image/{feedId}").permitAll()
         	.antMatchers(HttpMethod.OPTIONS).permitAll()
         	.anyRequest().authenticated()
         	.and()

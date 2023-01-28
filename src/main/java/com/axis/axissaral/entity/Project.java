@@ -40,14 +40,8 @@ public class Project {
 	 
 
 	 
-	 @OneToMany(mappedBy = "project",fetch = FetchType.LAZY,
-				cascade = CascadeType.ALL)
+	 @OneToMany(mappedBy = "project",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	 private Set<Module> modules;
-
-	 
-	 @OneToMany(mappedBy = "project", fetch = FetchType.LAZY,
-				cascade = CascadeType.ALL)
-	 private Set<StakeHolder> stakeHolders;
 
 	 
 
@@ -99,14 +93,6 @@ public class Project {
 
 	public void setModules(Set<Module> modules) {
 		this.modules = modules;
-	}
-
-	public Set<StakeHolder> getStakeHolders() {
-		return stakeHolders;
-	}
-
-	public void setStakeHolders(Set<StakeHolder> stakeHolders) {
-		this.stakeHolders = stakeHolders;
 	}
 
 	public Project() {

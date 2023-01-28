@@ -12,7 +12,8 @@ public class ProfileImage {
 	private String fileType;
 	private String employeeId;
 	private String managerId;
-	private String stakeHolderId;
+	private String dvpId;
+	private String svpId;
 
 	@Lob
 	private byte[] data;
@@ -62,13 +63,27 @@ public class ProfileImage {
 		this.managerId = managerId;
 	}
 
-	public String getStakeHolderId() {
-		return stakeHolderId;
+
+	public String getDvpId() {
+		return dvpId;
 	}
 
-	public void setStakeHolderId(String stakeHolderId) {
-		this.stakeHolderId = stakeHolderId;
+
+	public void setDvpId(String dvpId) {
+		this.dvpId = dvpId;
 	}
+
+
+	public String getSvpId() {
+		return svpId;
+	}
+
+
+	public void setSvpId(String svpId) {
+		this.svpId = svpId;
+	}
+
+	
 	
 	
 }

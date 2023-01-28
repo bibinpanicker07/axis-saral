@@ -40,15 +40,8 @@ public class Module {
 	 Project project;
 
 	 
-	 public Integer getModuleId() {
-		return moduleId;
-	}
 
-	public void setModuleId(Integer moduleId) {
-		this.moduleId = moduleId;
-	}
-
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL,mappedBy = "module")
+	 @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL,mappedBy = "module")
 	 @JoinColumn(name = "manager_id")
 	 private  Manager manager;
 	 
@@ -58,7 +51,13 @@ public class Module {
 	 private Set<Employee> employees;
 	 
 	 
-	 
+	 public Integer getModuleId() {
+		return moduleId;
+	}
+
+	public void setModuleId(Integer moduleId) {
+		this.moduleId = moduleId;
+	}
 	
 
 	public String getModuleName() {

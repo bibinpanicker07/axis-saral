@@ -33,14 +33,14 @@ public class EmployeeController {
 
 	}
 	
-    @GetMapping("/employee")
-    public List<Employee> getAllEmployees(){
-        return employeeService.allEmployees();
-    }
-    @GetMapping("/employee/{id}")
-    public Employee getEmployeeByEmpID(@PathVariable Integer id ){
-        return employeeService.getEmployeeByEmpID(id);
-    }
+//    @GetMapping("/employee")
+//    public List<Employee> getAllEmployees(){
+//        return employeeService.allEmployees();
+//    }
+//    @GetMapping("/employee/{id}")
+//    public Employee getEmployeeByEmpID(@PathVariable Integer id ){
+//        return employeeService.getEmployeeByEmpID(id);
+//    }
 	@GetMapping("/employee/")
     public ResponseEntity<?> getCurrentEmployee(){
         return employeeService.getCurrentEmployee();

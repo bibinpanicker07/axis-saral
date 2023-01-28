@@ -38,7 +38,7 @@ public class ProfileImageController {
 	  }
 	  
 	  
-	  @GetMapping("/manager/profile-image/{userId}") public ResponseEntity<Resource>
+	  @GetMapping("/Assistant Vice President/profile-image/{userId}") public ResponseEntity<Resource>
 	  getManagerProfileImageById(@PathVariable String userId) {
 		  ProfileImage profileImage = profileImageService.getManagerProfileImageById(userId); return ResponseEntity.ok()
 				  .contentType(MediaType.parseMediaType(profileImage.getFileType()))
@@ -47,14 +47,22 @@ public class ProfileImageController {
 	  }
 	  
 	  
-	  @GetMapping("/stakeholder/profile-image/{userId}") public ResponseEntity<Resource>
-	  getStakeholderProfileImageById(@PathVariable String userId) {
-		  ProfileImage profileImage = profileImageService.getStakeHolderProfileImageById(userId); return ResponseEntity.ok()
+	  @GetMapping("/Deputy Vice President/profile-image/{userId}") public ResponseEntity<Resource>
+	  getDvpImageById(@PathVariable String userId) {
+		  ProfileImage profileImage = profileImageService.getDvpProfileImageById(userId); return ResponseEntity.ok()
 	  .contentType(MediaType.parseMediaType(profileImage.getFileType()))
 	  .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" +
 	  profileImage.getFileName() + "\"") .body(new ByteArrayResource(profileImage.getData())); }
 	 
-
+	  
+	  @GetMapping("/Senior Vice President/profile-image/{userId}") public ResponseEntity<Resource>
+	  getSvpImageById(@PathVariable String userId) {
+		  ProfileImage profileImage = profileImageService.getSvpProfileImageById(userId); return ResponseEntity.ok()
+	  .contentType(MediaType.parseMediaType(profileImage.getFileType()))
+	  .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" +
+	  profileImage.getFileName() + "\"") .body(new ByteArrayResource(profileImage.getData())); }
+	 
+	  
 //	@GetMapping("/profile-image/{userId}")
 //	public ResponseEntity<byte[]> getProfileImageById(@PathVariable String userId) {
 //		ProfileImage profileImage = profileImageService.getProfileImageById(userId);
@@ -67,16 +75,22 @@ public class ProfileImageController {
 		profileImageService.addEmployeeProfileImage(userId, file);
 		return new ResponseEntity<>("Profile Image Uploaded Successfully", HttpStatus.OK);
 	}
-	@PostMapping("/manager/profile-image/add")
+	@PostMapping("/Assistant Vice President/profile-image/add")
 	public ResponseEntity<String> addManagerProfileImage(@RequestParam("userId") String userId,
 			@RequestParam("file") MultipartFile file) {
 		profileImageService.addManagerProfileImage(userId, file);
 		return new ResponseEntity<>("Profile Image Uploaded Successfully", HttpStatus.OK);
 	}
-	@PostMapping("/stakeholder/profile-image/add")
-	public ResponseEntity<String> addStakeHolderProfileImage(@RequestParam("userId") String userId,
+	@PostMapping("/Deputy Vice President/profile-image/add")
+	public ResponseEntity<String> addDvpImage(@RequestParam("userId") String userId,
 			@RequestParam("file") MultipartFile file) {
-		profileImageService.addStakeholderProfileImage(userId, file);
+		profileImageService.addDvpProfileImage(userId, file);
+		return new ResponseEntity<>("Profile Image Uploaded Successfully", HttpStatus.OK);
+	}
+	@PostMapping("/Senior Vice President/profile-image/add")
+	public ResponseEntity<String> addSvpImage(@RequestParam("userId") String userId,
+			@RequestParam("file") MultipartFile file) {
+		profileImageService.addSvpProfileImage(userId, file);
 		return new ResponseEntity<>("Profile Image Uploaded Successfully", HttpStatus.OK);
 	}
 }

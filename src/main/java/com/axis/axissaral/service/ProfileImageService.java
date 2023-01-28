@@ -27,8 +27,11 @@ public class ProfileImageService  {
 	public ProfileImage getManagerProfileImageById(String userId) {
 		return profileImageRepository.findBymanagerId(userId);
 	}
-	public ProfileImage getStakeHolderProfileImageById(String userId) {
-		return profileImageRepository.findBystakeHolderId(userId);
+	public ProfileImage getDvpProfileImageById(String userId) {
+		return profileImageRepository.findBydvpId(userId);
+	}
+	public ProfileImage getSvpProfileImageById(String userId) {
+		return profileImageRepository.findBysvpId(userId);
 	}
 
 	public void addEmployeeProfileImage(String userId, MultipartFile file) {
@@ -63,14 +66,14 @@ public class ProfileImageService  {
 			throw new ProfileImageStorageException("Could not store file " + fileName + ". Please try again!");
 		}
 	}
-	public void addStakeholderProfileImage(String userId, MultipartFile file) {
+	public void addDvpProfileImage(String userId, MultipartFile file) {
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 		try {
 			if(fileName.contains("..")) {
 				throw new ProfileImageStorageException("Filename contains Invalid Path Sequence" + fileName);
 			}
 			ProfileImage profileImage = new ProfileImage();
-			profileImage.setStakeHolderId(userId);
+			profileImage.setDvpId(userId);
 			profileImage.setFileName(fileName);
 			profileImage.setFileType(file.getContentType());
 			profileImage.setData(file.getBytes());
@@ -79,7 +82,22 @@ public class ProfileImageService  {
 			throw new ProfileImageStorageException("Could not store file " + fileName + ". Please try again!");
 		}
 	}
-	
+	public void addSvpProfileImage(String userId, MultipartFile file) {
+		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+		try {
+			if(fileName.contains("..")) {
+				throw new ProfileImageStorageException("Filename contains Invalid Path Sequence" + fileName);
+			}
+			ProfileImage profileImage = new ProfileImage();
+			profileImage.setSvpId(userId);
+			profileImage.setFileName(fileName);
+			profileImage.setFileType(file.getContentType());
+			profileImage.setData(file.getBytes());
+			profileImageRepository.save(profileImage);
+		} catch(IOException e) {
+			throw new ProfileImageStorageException("Could not store file " + fileName + ". Please try again!");
+		}
+	}
 	
 	
 }

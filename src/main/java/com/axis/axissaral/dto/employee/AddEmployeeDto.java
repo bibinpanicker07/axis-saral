@@ -1,5 +1,7 @@
 package com.axis.axissaral.dto.employee;
 
+
+
 public class AddEmployeeDto {
 
     private  String firstName;
@@ -7,10 +9,57 @@ public class AddEmployeeDto {
     private  String username;
     private  String password;
     private  String gender;
+    private  String status;
+    private  String branchName;
+    private  String city;
+    private  String state;  
     private  Long mobileNumber;
-    private  String designation;    
+    private  String designation;  
+    private String department;
     private String projectName;
     private String moduleName;
+    private String reportingManager;
+
+    
+    
+    
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public String getBranchName() {
+		return branchName;
+	}
+	public void setBranchName(String branchName) {
+		this.branchName = branchName;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
+	public String getDepartment() {
+		return department;
+	}
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
+	public String getReportingManager() {
+		return reportingManager;
+	}
+	public void setReportingManager(String reportingManager) {
+		this.reportingManager = reportingManager;
+	}
 	public String getFirstName() {
 		return firstName;
 	}
@@ -70,19 +119,7 @@ public class AddEmployeeDto {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public AddEmployeeDto(String firstName, String lastName, String username, String password, String gender,
-			 Long mobileNumber, String designation, String projectName, String moduleName) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.username = username;
-		this.password = password;
-		this.gender = gender;
-		this.mobileNumber = mobileNumber;
-		this.designation = designation;
-		this.projectName = projectName;
-		this.moduleName = moduleName;
-	}
+
 	public AddEmployeeDto() {
 		super();
 		// TODO Auto-generated constructor stub

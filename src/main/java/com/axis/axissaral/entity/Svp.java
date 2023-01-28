@@ -1,30 +1,25 @@
 package com.axis.axissaral.entity;
 
-import java.time.LocalDate;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 @Entity
-@Table(name = "employees")
+@Table(name = "svp")
 @JsonIgnoreProperties(value= {"handler","hibernateLazyInitializer","FieldHandler"})
-public class Employee {
-
-    @Id
+public class Svp {
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer Id;
@@ -55,153 +50,176 @@ public class Employee {
     private @NotBlank String designation;
     
     @Column(name = "branch")
-    private @NotBlank String branchName;
+    private  String branchName;
     
     @Column(name = "city")
-    private @NotBlank String city;
+    private  String city;
     
     @Column(name = "state")
-    private @NotBlank String state;
-    
-    
-    @Column(name = "project_name")
-    private  String projectName;
+    private  String state;
     
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "manager_id", nullable = false)
-    private Manager manager;
+	@OneToMany(mappedBy = "svp", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	Set<Department> depts;
+	
+    
+    @JsonIgnore
+	@OneToMany(mappedBy = "svp", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	Set<Dvp> dvps;
 
-    
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "dept_id", nullable = false)
-    private Department department;
-
-    
-    @JsonIgnore
-    @ManyToOne()
-    @JoinColumn(name = "module_id", referencedColumnName = "id")
-    private Module module;
 
     @JsonIgnore
-	@OneToMany(mappedBy = "employee",fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "svp",fetch = FetchType.LAZY)
 	private Set<Comment> comments;
     
     @JsonIgnore
-	@OneToMany(mappedBy = "employee",fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "svp",fetch = FetchType.LAZY)
 	private Set<FileDB> files;
     
-	
-
-	public Manager getManager() {
-		return manager;
+    
+	public Svp() {
+		super();
 	}
 
-	public void setManager(Manager manager) {
-		this.manager = manager;
+
+
+	public Set<Comment> getComments() {
+		return comments;
 	}
 
-	public String getBranchName() {
-		return branchName;
+
+
+	public void setComments(Set<Comment> comments) {
+		this.comments = comments;
 	}
 
-	public void setBranchName(String branchName) {
-		this.branchName = branchName;
-	}
 
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-
-	public Department getDepartment() {
-		return department;
-	}
-
-	public void setDepartment(Department department) {
-		this.department = department;
-	}
 
 	public Set<FileDB> getFiles() {
 		return files;
 	}
 
+
+
 	public void setFiles(Set<FileDB> files) {
 		this.files = files;
 	}
+
+
+
+	public Set<Department> getDepts() {
+		return depts;
+	}
+
+
+
+	public void setDepts(Set<Department> depts) {
+		this.depts = depts;
+	}
+
+
+
+	public Integer getId() {
+		return Id;
+	}
+
+
+
+	public void setId(Integer id) {
+		Id = id;
+	}
+
+
 
 	public String getFirstName() {
 		return firstName;
 	}
 
+
+
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
+
+
 
 	public String getLastName() {
 		return lastName;
 	}
 
+
+
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+
+
 
 	public String getUsername() {
 		return username;
 	}
 
+
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
+
 
 	public String getPassword() {
 		return password;
 	}
 
+
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+
 
 	public String getGender() {
 		return gender;
 	}
 
+
+
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
+
+
 	public String getStatus() {
 		return status;
 	}
+
+
 
 	public void setStatus(String status) {
 		this.status = status;
 	}
 
 
+
 	public Long getMobileNumber() {
 		return mobileNumber;
 	}
+
+
 
 	public void setMobileNumber(Long mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
 
+
+
 	public String getDesignation() {
 		return designation;
 	}
+
+
 
 	public void setDesignation(String designation) {
 		this.designation = designation;
@@ -209,42 +227,51 @@ public class Employee {
 
 
 
-	public Module getModule() {
-		return module;
+	public String getBranchName() {
+		return branchName;
 	}
 
-	public void setModule(Module module) {
-		this.module = module;
+
+
+	public void setBranchName(String branchName) {
+		this.branchName = branchName;
+	}
+
+
+
+	public String getCity() {
+		return city;
+	}
+
+
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+
+
+	public String getState() {
+		return state;
+	}
+
+
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+
+
+	public Set<Dvp> getDvps() {
+		return dvps;
+	}
+
+
+
+	public void setDvps(Set<Dvp> dvps) {
+		this.dvps = dvps;
 	}
 	
 
-	public String getProjectName() {
-		return projectName;
-	}
-
-	public void setProjectName(String projectName) {
-		this.projectName = projectName;
-	}
-
-	public Employee() {
-		super();
-	}
-
-	public Integer getId() {
-		return Id;
-	}
-
-	public void setId(Integer Id) {
-		this.Id = Id;
-	}
-
-	public Set<Comment> getComments() {
-		return comments;
-	}
-
-	public void setComments(Set<Comment> comments) {
-		this.comments = comments;
-	}
-
-        
 }

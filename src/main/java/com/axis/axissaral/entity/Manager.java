@@ -11,52 +11,68 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 @Entity
 @Table(name = "managers")
+@JsonIgnoreProperties(value= {"handler","hibernateLazyInitializer","FieldHandler"})
 public class Manager {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer Id;
+	 @Id
+	    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	    @Column(name = "id")
+	    private Integer Id;
 
-    @Column(name = "first_name")
-    private @NotBlank String firstName;
+	    @Column(name = "first_name")
+	    private @NotBlank String firstName;
 
-    @Column(name = "last_name")
-    private @NotBlank String lastName;
+	    @Column(name = "last_name")
+	    private @NotBlank String lastName;
 
-    @Column(name = "email")
-    private @NotBlank String username;
-    
-    @Column(name = "password")
-    private @NotBlank String password;
-    
-    @Column(name = "gender")
-    private @NotBlank String gender;
-    
-    @Column(name = "status")
-    private @NotBlank String status;
-    
-    @Column(name = "doj")
-    private  LocalDate dateOfJoining;
-    
-    @Column(name = "mobile_number")
-    private  Long mobileNumber;
-    
-    @Column(name = "designation")
-    private @NotBlank String designation;
+	    @Column(name = "email")
+	    private @NotBlank String username;
+	    
+	    @Column(name = "password")
+	    private @NotBlank String password;
+	    
+	    @Column(name = "gender")
+	    private @NotBlank String gender;
+	    
+	    @Column(name = "status")
+	    private @NotBlank String status;
+	    
+	    
+	    @Column(name = "mobile_number")
+	    private  Long mobileNumber;
+	    
+	    @Column(name = "designation")
+	    private @NotBlank String designation;
+	    
+	    @Column(name = "branch")
+	    private @NotBlank String branchName;
+	    
+	    @Column(name = "city")
+	    private @NotBlank String city;
+	    
+	    @Column(name = "state")
+	    private @NotBlank String state;
     
     @Column(name = "project_name")
-    private @NotBlank String projectName;
+    private  String projectName;
+    
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "dept_id", nullable = false)
+    private Department department;
+
     
     @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -70,6 +86,63 @@ public class Manager {
     @JsonIgnore
 	@OneToMany(mappedBy = "manager",fetch = FetchType.LAZY)
 	private Set<FileDB> files;
+
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "dvp_id", nullable = false)
+    Dvp dvp;
+
+    @JsonIgnore
+	@OneToMany(mappedBy = "manager",fetch = FetchType.LAZY)
+	private Set<Employee> employees;
+    
+	public String getBranchName() {
+		return branchName;
+	}
+
+	public void setBranchName(String branchName) {
+		this.branchName = branchName;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public Dvp getDvp() {
+		return dvp;
+	}
+
+	public void setDvp(Dvp dvp) {
+		this.dvp = dvp;
+	}
+
+	public Set<Employee> getEmployees() {
+		return employees;
+	}
+
+	public void setEmployees(Set<Employee> employees) {
+		this.employees = employees;
+	}
+
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
 
 	public Integer getId() {
 		return Id;
@@ -145,13 +218,7 @@ public class Manager {
 		this.status = status;
 	}
 
-	public LocalDate getDateOfJoining() {
-		return dateOfJoining;
-	}
 
-	public void setDateOfJoining(LocalDate dateOfJoining) {
-		this.dateOfJoining = dateOfJoining;
-	}
 
 	public Long getMobileNumber() {
 		return mobileNumber;

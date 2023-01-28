@@ -52,12 +52,42 @@ public class FileController {
     }
   }
 
-  @PostMapping("/manager/upload")
+  @PostMapping("/Assistant Vice President/upload")
   public ResponseEntity<ResponseMessage> uploadManagerFile(@RequestParam("file") MultipartFile file,@RequestParam("manager") Integer managerId) {
     String message = "";
     try {
   
       storageService.storeManagerFile(file,managerId);
+
+      message = "Uploaded the file successfully: " + file.getOriginalFilename();
+      return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
+    } catch (Exception e) {
+      message = "Could not upload the file: " + file.getOriginalFilename() + "!";
+      return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
+    }
+  }
+  
+  @PostMapping("/Deputy Vice President/upload")
+  public ResponseEntity<ResponseMessage> uploaddvpFile(@RequestParam("file") MultipartFile file,@RequestParam("manager") Integer managerId) {
+    String message = "";
+    try {
+  
+      storageService.storeDvpFile(file,managerId);
+
+      message = "Uploaded the file successfully: " + file.getOriginalFilename();
+      return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
+    } catch (Exception e) {
+      message = "Could not upload the file: " + file.getOriginalFilename() + "!";
+      return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
+    }
+  }
+  
+  @PostMapping("/Senior Vice President/upload")
+  public ResponseEntity<ResponseMessage> uploadsvoFile(@RequestParam("file") MultipartFile file,@RequestParam("manager") Integer managerId) {
+    String message = "";
+    try {
+  
+      storageService.storeSvpFile(file,managerId);
 
       message = "Uploaded the file successfully: " + file.getOriginalFilename();
       return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
@@ -95,7 +125,7 @@ public class FileController {
   
   
   
-  @GetMapping("employee/files/{name}")
+  @GetMapping("/employee/files/{name}")
   public ResponseEntity<byte[]> getEmployeeFile(@PathVariable String name) {
 	  
     FileDB fileDB = storageService.getEmployeeFile(name);
@@ -104,10 +134,28 @@ public class FileController {
         .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileDB.getName() + "\"")
         .body(fileDB.getData());
   }
-  @GetMapping("manager/files/{name}")
+  @GetMapping("/Assistant Vice President/files/{name}")
   public ResponseEntity<byte[]> getManagerFile(@PathVariable String name) {
 	
     FileDB fileDB = storageService.getManagerFile(name);
+
+    return ResponseEntity.ok()
+        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileDB.getName() + "\"")
+        .body(fileDB.getData());
+  }
+  @GetMapping("/Deputy Vice President/files/{name}")
+  public ResponseEntity<byte[]> getdvpFile(@PathVariable String name) {
+	  
+    FileDB fileDB = storageService.getDvpFile(name);
+
+    return ResponseEntity.ok()
+        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileDB.getName() + "\"")
+        .body(fileDB.getData());
+  }
+  @GetMapping("/Senior Vice President/files/{name}")
+  public ResponseEntity<byte[]> getsvpFile(@PathVariable String name) {
+	  
+    FileDB fileDB = storageService.getSvpFile(name);
 
     return ResponseEntity.ok()
         .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileDB.getName() + "\"")
