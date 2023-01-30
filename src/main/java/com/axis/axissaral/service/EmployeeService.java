@@ -152,10 +152,20 @@ public class EmployeeService implements UserDetailsService {
 //	   }
 	 
 	 
-//	 public Employee getEmployeeByEmpID(int empID) {
-//		 return employeeRepository.findById(empID).get();
-//	 }
-	
+	 public Employee getEmployeeByEmpID(int empID) {
+		 return employeeRepository.findById(empID).get();
+	 }
+	 public Manager getavpByEmpID(int empID) {
+		 return managerRepository.findById(empID).get();
+	 }
+	 public Dvp getdvpById(int empID) {
+		 return dvpRepository.findById(empID).get();
+	 }
+	 public Svp getsvpByEmpID(int empID) {
+		 return svpRepository.findById(empID).get();
+	 }
+
+	 
 	
 //	@Override
 //	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

@@ -67,7 +67,7 @@ public class Employee {
     @Column(name = "project_name")
     private  String projectName;
     
-    @JsonIgnore
+ 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "manager_id", nullable = false)
     private Manager manager;
