@@ -88,10 +88,7 @@ public class Dvp {
 		@OneToMany(mappedBy = "dvp",fetch = FetchType.LAZY)
 		private Set<Comment> comments;
 	    
-	    @JsonIgnore
-		@OneToMany(mappedBy = "dvp",fetch = FetchType.LAZY)
-		private Set<FileDB> files;
-	    
+
 		
 
 	public Set<Comment> getComments() {
@@ -102,13 +99,6 @@ public class Dvp {
 			this.comments = comments;
 		}
 
-		public Set<FileDB> getFiles() {
-			return files;
-		}
-
-		public void setFiles(Set<FileDB> files) {
-			this.files = files;
-		}
 
 	public Department getDepartment() {
 			return department;

@@ -72,10 +72,7 @@ public class Svp {
 	@OneToMany(mappedBy = "svp",fetch = FetchType.LAZY)
 	private Set<Comment> comments;
     
-    @JsonIgnore
-	@OneToMany(mappedBy = "svp",fetch = FetchType.LAZY)
-	private Set<FileDB> files;
-    
+
     
 	public Svp() {
 		super();
@@ -94,16 +91,6 @@ public class Svp {
 	}
 
 
-
-	public Set<FileDB> getFiles() {
-		return files;
-	}
-
-
-
-	public void setFiles(Set<FileDB> files) {
-		this.files = files;
-	}
 
 
 

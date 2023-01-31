@@ -10,9 +10,5 @@ import com.axis.axissaral.entity.ProfileImage;
 public interface ProfileImageRepository extends JpaRepository<ProfileImage, String> {
 	
 
-	ProfileImage findByemployeeId(String id);
-	ProfileImage findBymanagerId(String id);
-	ProfileImage findBydvpId(String id);
-	ProfileImage findBysvpId(String id);
-
+	ProfileImage findByuserName(String username);
 }

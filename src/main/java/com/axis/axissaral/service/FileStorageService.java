@@ -28,66 +28,23 @@ public class FileStorageService {
   @Autowired
   private FileDBRepository fileDBRepository;
   
-  @Autowired
-  private EmployeeRepository employeeRepository;
+ 
+ 
   
-  @Autowired
-  private ManagerRepository managerRepository;
-  @Autowired
-  private DvpRepository dvpRepository;
-
-  @Autowired
-  private SvpRepository svpRepository;
-  
-  public FileDB storeEmployeeFile(MultipartFile file,Integer empId) throws IOException {
+  public FileDB storeFile(MultipartFile file,String userName) throws IOException {
     String fileName = StringUtils.cleanPath(file.getOriginalFilename());
     FileDB FileDB = new FileDB(fileName, file.getContentType(), file.getBytes());
-    FileDB.setEmployee(employeeRepository.getById(empId));
+    FileDB.setUserName(userName);
 
     return fileDBRepository.save(FileDB);
   }
   
-  public FileDB storeManagerFile(MultipartFile file,Integer managerId) throws IOException {
-	    String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-	    FileDB FileDB = new FileDB(fileName, file.getContentType(), file.getBytes());
-	    FileDB.setManager(managerRepository.getById(managerId));
 
-	    return fileDBRepository.save(FileDB);
-	  }
-  public FileDB storeDvpFile(MultipartFile file,Integer managerId) throws IOException {
-	    String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-	    FileDB FileDB = new FileDB(fileName, file.getContentType(), file.getBytes());
-	    FileDB.setDvp(dvpRepository.getById(managerId));
-
-	    return fileDBRepository.save(FileDB);
-	  } 
-  public FileDB storeSvpFile(MultipartFile file,Integer managerId) throws IOException {
-		    String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-		    FileDB FileDB = new FileDB(fileName, file.getContentType(), file.getBytes());
-		    FileDB.setSvp(svpRepository.getById(managerId));
-
-		    return fileDBRepository.save(FileDB);
-		  }
-  public FileDB getEmployeeFile(String name) {
-		String user = JwtRequestFilter.CURRENT_USER;
-	  Employee emp = employeeRepository.findByUsername(user);
-    return fileDBRepository.findBynameAndEmployee(name, emp);
+  public FileDB getFile(String name) {
+		String userName = JwtRequestFilter.CURRENT_USER;
+    return fileDBRepository.findBynameAnduserName(name,userName);
   }
-  public FileDB getManagerFile(String name) {
-		String user = JwtRequestFilter.CURRENT_USER;
-		  Manager emp = managerRepository.findByUsername(user);
-	    return fileDBRepository.findBynameAndManager(name, emp);
-	  }
-  public FileDB getDvpFile(String name) {
-		String user = JwtRequestFilter.CURRENT_USER;
-		  Dvp emp = dvpRepository.findByUsername(user);
-	    return fileDBRepository.findBynameAndDvp(name, emp);
-	  }
-  public FileDB getSvpFile(String name) {
-		String user = JwtRequestFilter.CURRENT_USER;
-		  Svp emp = svpRepository.findByUsername(user);
-	    return fileDBRepository.findBynameAndSvp(name, emp);
-	  }
+
 	  
   public Stream<FileDB> getAllFiles() {
     return fileDBRepository.findAll().stream();

@@ -21,27 +21,19 @@ public class ProfileImageService  {
 	private ProfileImageRepository profileImageRepository;
 
 	
-	public ProfileImage getEmployeeProfileImageById(String userId) {
-		return profileImageRepository.findByemployeeId(userId);
-	}
-	public ProfileImage getManagerProfileImageById(String userId) {
-		return profileImageRepository.findBymanagerId(userId);
-	}
-	public ProfileImage getDvpProfileImageById(String userId) {
-		return profileImageRepository.findBydvpId(userId);
-	}
-	public ProfileImage getSvpProfileImageById(String userId) {
-		return profileImageRepository.findBysvpId(userId);
+	public ProfileImage getProfileImageByusername(String userName) {
+		return profileImageRepository.findByuserName(userName);
 	}
 
-	public void addEmployeeProfileImage(String userId, MultipartFile file) {
+
+	public void addEmployeeProfileImage(String userName, MultipartFile file) {
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 		try {
 			if(fileName.contains("..")) {
 				throw new ProfileImageStorageException("Filename contains Invalid Path Sequence" + fileName);
 			}
 			ProfileImage profileImage = new ProfileImage();
-			profileImage.setEmployeeId(userId);
+			profileImage.setUserName(userName);
 			profileImage.setFileName(fileName);
 			profileImage.setFileType(file.getContentType());
 			profileImage.setData(file.getBytes());
@@ -50,54 +42,7 @@ public class ProfileImageService  {
 			throw new ProfileImageStorageException("Could not store file " + fileName + ". Please try again!");
 		}
 	}
-	public void addManagerProfileImage(String userId, MultipartFile file) {
-		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-		try {
-			if(fileName.contains("..")) {
-				throw new ProfileImageStorageException("Filename contains Invalid Path Sequence" + fileName);
-			}
-			ProfileImage profileImage = new ProfileImage();
-			profileImage.setManagerId(userId);
-			profileImage.setFileName(fileName);
-			profileImage.setFileType(file.getContentType());
-			profileImage.setData(file.getBytes());
-			profileImageRepository.save(profileImage);
-		} catch(IOException e) {
-			throw new ProfileImageStorageException("Could not store file " + fileName + ". Please try again!");
-		}
-	}
-	public void addDvpProfileImage(String userId, MultipartFile file) {
-		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-		try {
-			if(fileName.contains("..")) {
-				throw new ProfileImageStorageException("Filename contains Invalid Path Sequence" + fileName);
-			}
-			ProfileImage profileImage = new ProfileImage();
-			profileImage.setDvpId(userId);
-			profileImage.setFileName(fileName);
-			profileImage.setFileType(file.getContentType());
-			profileImage.setData(file.getBytes());
-			profileImageRepository.save(profileImage);
-		} catch(IOException e) {
-			throw new ProfileImageStorageException("Could not store file " + fileName + ". Please try again!");
-		}
-	}
-	public void addSvpProfileImage(String userId, MultipartFile file) {
-		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-		try {
-			if(fileName.contains("..")) {
-				throw new ProfileImageStorageException("Filename contains Invalid Path Sequence" + fileName);
-			}
-			ProfileImage profileImage = new ProfileImage();
-			profileImage.setSvpId(userId);
-			profileImage.setFileName(fileName);
-			profileImage.setFileType(file.getContentType());
-			profileImage.setData(file.getBytes());
-			profileImageRepository.save(profileImage);
-		} catch(IOException e) {
-			throw new ProfileImageStorageException("Could not store file " + fileName + ". Please try again!");
-		}
-	}
+	
 	
 	
 }

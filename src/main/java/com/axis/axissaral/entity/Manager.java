@@ -83,10 +83,6 @@ public class Manager {
 	@OneToMany(mappedBy = "manager",fetch = FetchType.LAZY)
 	private Set<Comment> comments;
     
-    @JsonIgnore
-	@OneToMany(mappedBy = "manager",fetch = FetchType.LAZY)
-	private Set<FileDB> files;
-
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "dvp_id", nullable = false)
@@ -178,13 +174,7 @@ public class Manager {
 
 
 
-	public Set<FileDB> getFiles() {
-		return files;
-	}
 
-	public void setFiles(Set<FileDB> files) {
-		this.files = files;
-	}
 
 	public String getUsername() {
 		return username;

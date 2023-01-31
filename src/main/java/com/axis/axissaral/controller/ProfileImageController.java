@@ -29,39 +29,15 @@ public class ProfileImageController {
 	private ProfileImageService profileImageService;
 
 
-	  @GetMapping("/employee/profile-image/{userId}")
-	  public ResponseEntity<Resource> getEmployeeProfileImageById(@PathVariable String userId) {
-		  ProfileImage profileImage = profileImageService.getEmployeeProfileImageById(userId); return ResponseEntity.ok()
+	  @GetMapping("/profile-image/{userName}")
+	  public ResponseEntity<Resource> getEmployeeProfileImageById(@PathVariable String userName) {
+		  ProfileImage profileImage = profileImageService.getProfileImageByusername(userName); 
+		  return ResponseEntity.ok()
 				  .contentType(MediaType.parseMediaType(profileImage.getFileType()))
 				  .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" +
 	  profileImage.getFileName() + "\"") .body(new ByteArrayResource(profileImage.getData())); 
 	  }
 	  
-	  
-	  @GetMapping("/Assistant Vice President/profile-image/{userId}") public ResponseEntity<Resource>
-	  getManagerProfileImageById(@PathVariable String userId) {
-		  ProfileImage profileImage = profileImageService.getManagerProfileImageById(userId); return ResponseEntity.ok()
-				  .contentType(MediaType.parseMediaType(profileImage.getFileType()))
-	  .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" +
-	  profileImage.getFileName() + "\"") .body(new ByteArrayResource(profileImage.getData())); 
-	  }
-	  
-	  
-	  @GetMapping("/Deputy Vice President/profile-image/{userId}") public ResponseEntity<Resource>
-	  getDvpImageById(@PathVariable String userId) {
-		  ProfileImage profileImage = profileImageService.getDvpProfileImageById(userId); return ResponseEntity.ok()
-	  .contentType(MediaType.parseMediaType(profileImage.getFileType()))
-	  .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" +
-	  profileImage.getFileName() + "\"") .body(new ByteArrayResource(profileImage.getData())); }
-	 
-	  
-	  @GetMapping("/Senior Vice President/profile-image/{userId}") public ResponseEntity<Resource>
-	  getSvpImageById(@PathVariable String userId) {
-		  ProfileImage profileImage = profileImageService.getSvpProfileImageById(userId); return ResponseEntity.ok()
-	  .contentType(MediaType.parseMediaType(profileImage.getFileType()))
-	  .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" +
-	  profileImage.getFileName() + "\"") .body(new ByteArrayResource(profileImage.getData())); }
-	 
 	  
 //	@GetMapping("/profile-image/{userId}")
 //	public ResponseEntity<byte[]> getProfileImageById(@PathVariable String userId) {
@@ -69,28 +45,10 @@ public class ProfileImageController {
 //		return new ResponseEntity<>(Base64.getEncoder().encode(profileImage.getData()), HttpStatus.OK);
 //	}
 
-	@PostMapping("/employee/profile-image/add")
+	@PostMapping("/profile-image/add")
 	public ResponseEntity<String> addEmployeeProfileImage(@RequestParam("userId") String userId,
 			@RequestParam("file") MultipartFile file) {
 		profileImageService.addEmployeeProfileImage(userId, file);
-		return new ResponseEntity<>("Profile Image Uploaded Successfully", HttpStatus.OK);
-	}
-	@PostMapping("/Assistant Vice President/profile-image/add")
-	public ResponseEntity<String> addManagerProfileImage(@RequestParam("userId") String userId,
-			@RequestParam("file") MultipartFile file) {
-		profileImageService.addManagerProfileImage(userId, file);
-		return new ResponseEntity<>("Profile Image Uploaded Successfully", HttpStatus.OK);
-	}
-	@PostMapping("/Deputy Vice President/profile-image/add")
-	public ResponseEntity<String> addDvpImage(@RequestParam("userId") String userId,
-			@RequestParam("file") MultipartFile file) {
-		profileImageService.addDvpProfileImage(userId, file);
-		return new ResponseEntity<>("Profile Image Uploaded Successfully", HttpStatus.OK);
-	}
-	@PostMapping("/Senior Vice President/profile-image/add")
-	public ResponseEntity<String> addSvpImage(@RequestParam("userId") String userId,
-			@RequestParam("file") MultipartFile file) {
-		profileImageService.addSvpProfileImage(userId, file);
 		return new ResponseEntity<>("Profile Image Uploaded Successfully", HttpStatus.OK);
 	}
 }

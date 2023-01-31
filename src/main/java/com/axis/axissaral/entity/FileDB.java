@@ -21,52 +21,31 @@ public class FileDB {
   private String name;
 
   private String type;
+  
+  private String userName;
 
   @Lob
   private byte[] data;
   
-  @ManyToOne()
-  @JoinColumn(name = "employee_id", referencedColumnName = "id")
-  private Employee employee;
 
-  @ManyToOne()
-  @JoinColumn(name = "manager_id", referencedColumnName = "id")
-  private Manager manager;
-  
-  @ManyToOne()
-  @JoinColumn(name = "dvp_id", referencedColumnName = "id")
-  private Dvp dvp;
-  
-  @ManyToOne()
-  @JoinColumn(name = "svp_id", referencedColumnName = "id")
-  private Svp svp;
   
   public FileDB() {
   }
   
-  
 
-  public Dvp getDvp() {
-	return dvp;
+public FileDB(String id, String name, String type, String userName, byte[] data) {
+	super();
+	this.id = id;
+	this.name = name;
+	this.type = type;
+	this.userName = userName;
+	this.data = data;
 }
 
 
 
-public void setDvp(Dvp dvp) {
-	this.dvp = dvp;
-}
 
 
-
-public Svp getSvp() {
-	return svp;
-}
-
-
-
-public void setSvp(Svp svp) {
-	this.svp = svp;
-}
 
 
 
@@ -77,30 +56,19 @@ public FileDB(String name, String type, byte[] data) {
   }
   
 
-  public FileDB(String name, String type, byte[] data, Employee employee, Manager manager) {
-	super();
-	this.name = name;
-	this.type = type;
-	this.data = data;
-	this.employee = employee;
-	this.manager = manager;
+
+
+public String getUserName() {
+	return userName;
 }
 
-public Employee getEmployee() {
-	return employee;
+
+
+public void setUserName(String userName) {
+	this.userName = userName;
 }
 
-public void setEmployee(Employee employee) {
-	this.employee = employee;
-}
 
-public Manager getManager() {
-	return manager;
-}
-
-public void setManager(Manager manager) {
-	this.manager = manager;
-}
 
 public void setId(String id) {
 	this.id = id;

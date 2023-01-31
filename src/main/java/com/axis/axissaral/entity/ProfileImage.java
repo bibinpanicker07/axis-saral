@@ -10,11 +10,7 @@ public class ProfileImage {
 	@Id
 	private String fileName;
 	private String fileType;
-	private String employeeId;
-	private String managerId;
-	private String dvpId;
-	private String svpId;
-
+	private String userName;
 	@Lob
 	private byte[] data;
 
@@ -47,41 +43,16 @@ public class ProfileImage {
 		this.data = data;
 	}
 
-	public String getEmployeeId() {
-		return employeeId;
-	}
 
-	public void setEmployeeId(String employeeId) {
-		this.employeeId = employeeId;
-	}
-
-	public String getManagerId() {
-		return managerId;
-	}
-
-	public void setManagerId(String managerId) {
-		this.managerId = managerId;
+	public String getUserName() {
+		return userName;
 	}
 
 
-	public String getDvpId() {
-		return dvpId;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
-
-	public void setDvpId(String dvpId) {
-		this.dvpId = dvpId;
-	}
-
-
-	public String getSvpId() {
-		return svpId;
-	}
-
-
-	public void setSvpId(String svpId) {
-		this.svpId = svpId;
-	}
 
 	
 	

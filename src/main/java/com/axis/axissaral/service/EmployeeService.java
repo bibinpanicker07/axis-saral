@@ -86,7 +86,9 @@ public class EmployeeService implements UserDetailsService {
 			emp.setBranchName(empdto.getBranchName());
 			emp.setCity(empdto.getCity());
 			emp.setState(empdto.getState());
-			emp.setDepartment(departmentRepository.findBydepartmentName(empdto.getDepartment()));
+//			emp.setDepartment(departmentRepository.findBydepartmentName(empdto.getDepartment()));
+			
+			emp.setDepartment(dvpRepository.findByUsername(empdto.getReportingManager()).getDepartment());
 			emp.setProjectName(empdto.getProjectName());
 			emp.setModule(moduleRepository.findBymoduleName(empdto.getModuleName()));
 			emp.setDvp(dvpRepository.findByUsername(empdto.getReportingManager()));
@@ -138,7 +140,9 @@ public class EmployeeService implements UserDetailsService {
 			emp.setBranchName(empdto.getBranchName());
 			emp.setCity(empdto.getCity());
 			emp.setState(empdto.getState());
-			emp.setDepartment(departmentRepository.findBydepartmentName(empdto.getDepartment()));
+//			emp.setDepartment(departmentRepository.findBydepartmentName(empdto.getDepartment()));
+			emp.setDepartment(managerRepository.findByUsername(empdto.getReportingManager()).getDepartment());
+
 			emp.setProjectName(empdto.getProjectName());
 			emp.setModule(moduleRepository.findBymoduleName(empdto.getModuleName()));
 			emp.setManager(managerRepository.findByUsername(empdto.getReportingManager()));
@@ -147,6 +151,60 @@ public class EmployeeService implements UserDetailsService {
 		}
 
 	}
+	
+	
+	
+	
+	public void updateEmployyee(Integer id,AddEmployeeDto empdto) {
+		
+		Employee emp = employeeRepository.getById(id);
+		emp.setFirstName(empdto.getFirstName());
+		emp.setLastName(empdto.getLastName());
+		emp.setStatus(empdto.getStatus());
+		emp.setMobileNumber(empdto.getMobileNumber());
+		emp.setDesignation(empdto.getDesignation());
+		emp.setBranchName(empdto.getBranchName());
+		emp.setCity(empdto.getCity());
+		emp.setState(empdto.getState());
+		emp.setDepartment(managerRepository.findByUsername(empdto.getReportingManager()).getDepartment());
+		emp.setProjectName(empdto.getProjectName());
+		emp.setModule(moduleRepository.findBymoduleName(empdto.getModuleName()));
+		emp.setManager(managerRepository.findByUsername(empdto.getReportingManager()));
+		
+		employeeRepository.save(emp);
+	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 //	 public List<Employee> allEmployees() {
 //	        return employeeRepository.findAll();
 //	   }

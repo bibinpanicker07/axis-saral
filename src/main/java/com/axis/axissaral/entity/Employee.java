@@ -88,10 +88,7 @@ public class Employee {
 	@OneToMany(mappedBy = "employee",fetch = FetchType.LAZY)
 	private Set<Comment> comments;
     
-    @JsonIgnore
-	@OneToMany(mappedBy = "employee",fetch = FetchType.LAZY)
-	private Set<FileDB> files;
-    
+
 	
 
 	public Manager getManager() {
@@ -134,13 +131,7 @@ public class Employee {
 		this.department = department;
 	}
 
-	public Set<FileDB> getFiles() {
-		return files;
-	}
 
-	public void setFiles(Set<FileDB> files) {
-		this.files = files;
-	}
 
 	public String getFirstName() {
 		return firstName;
