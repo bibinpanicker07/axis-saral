@@ -70,17 +70,42 @@ public class EmployeeController {
 	
 	
 	
-	@PutMapping("/employee/{id}")
+	@PutMapping("update/employee/{id}")
 	public ResponseEntity<String> updateEmployee(@PathVariable Integer id,@RequestBody AddEmployeeDto updatedEmp){
 		
-		employeeService.updateEmployyee(id,updatedEmp);
+		employeeService.updateEmployee(id,updatedEmp);
 		
 		return new ResponseEntity<String>("Employee Updated Successfully", HttpStatus.CREATED);
 
 	}
 	
 	
+	@PutMapping("update/Assistant Vice President/{id}")
+	public ResponseEntity<String> updateManager(@PathVariable Integer id,@RequestBody AddEmployeeDto updatedEmp){
+		
+		employeeService.updateManager(id,updatedEmp);
+		
+		return new ResponseEntity<String>("Employee Updated Successfully", HttpStatus.CREATED);
+
+	}
 	
+	@PutMapping("update/Deputy Vice President/{id}")
+	public ResponseEntity<String> updateDvp(@PathVariable Integer id,@RequestBody AddEmployeeDto updatedEmp){
+		
+		employeeService.updateDvp(id,updatedEmp);
+		
+		return new ResponseEntity<String>("Employee Updated Successfully", HttpStatus.CREATED);
+
+	}
+	
+	@PutMapping("update/Senior Vice President/{id}")
+	public ResponseEntity<String> updateSvp(@PathVariable Integer id,@RequestBody AddEmployeeDto updatedEmp){
+		
+		employeeService.updateSvp(id,updatedEmp);
+		
+		return new ResponseEntity<String>("Employee Updated Successfully", HttpStatus.CREATED);
+
+	}
 	
 	
 	

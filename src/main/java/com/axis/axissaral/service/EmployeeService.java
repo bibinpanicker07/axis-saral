@@ -155,7 +155,7 @@ public class EmployeeService implements UserDetailsService {
 	
 	
 	
-	public void updateEmployyee(Integer id,AddEmployeeDto empdto) {
+	public void updateEmployee(Integer id,AddEmployeeDto empdto) {
 		
 		Employee emp = employeeRepository.getById(id);
 		emp.setFirstName(empdto.getFirstName());
@@ -170,38 +170,217 @@ public class EmployeeService implements UserDetailsService {
 		emp.setProjectName(empdto.getProjectName());
 		emp.setModule(moduleRepository.findBymoduleName(empdto.getModuleName()));
 		emp.setManager(managerRepository.findByUsername(empdto.getReportingManager()));
-		
-		employeeRepository.save(emp);
-	
+		if(empdto.getDesignation().equalsIgnoreCase("Assistant Vice President") || empdto.getDesignation().equalsIgnoreCase("Deputy Vice President") || empdto.getDesignation().equalsIgnoreCase("Senior Vice President")) {
+			
+			if(empdto.getDesignation().equalsIgnoreCase("Assistant Vice President")) {
+				Manager mgr = new Manager();
+				
+				mgr.setFirstName(empdto.getFirstName());
+				mgr.setLastName(empdto.getLastName());
+				mgr.setStatus(empdto.getStatus());
+				mgr.setMobileNumber(empdto.getMobileNumber());
+				mgr.setDesignation("Assistant Vice President");
+				mgr.setBranchName(empdto.getBranchName());
+				mgr.setCity(empdto.getCity());
+				mgr.setState(empdto.getState());
+				mgr.setDepartment(dvpRepository.findByUsername(empdto.getReportingManager()).getDepartment());
+				mgr.setProjectName(empdto.getProjectName());
+				mgr.setModule(moduleRepository.findBymoduleName(empdto.getModuleName()));
+				mgr.setDvp(dvpRepository.findByUsername(empdto.getReportingManager()));
+				
+				managerRepository.save(mgr);
+				
+				employeeRepository.deleteById(emp.getId());
+				
+			} else if(empdto.getDesignation().equalsIgnoreCase("Deputy Vice President")){
+				Dvp mgr = new Dvp();
+				
+				mgr.setFirstName(empdto.getFirstName());
+				mgr.setLastName(empdto.getLastName());
+				mgr.setStatus(empdto.getStatus());
+				mgr.setMobileNumber(empdto.getMobileNumber());
+				mgr.setDesignation("Deputy Vice President");
+				mgr.setBranchName(empdto.getBranchName());
+				mgr.setCity(empdto.getCity());
+				mgr.setState(empdto.getState());
+				mgr.setDepartment(departmentRepository.findBydepartmentName(empdto.getDepartment()));
+//				mgr.setProjectName(empdto.getProjectName());
+//				mgr.setModule(moduleRepository.findBymoduleName(empdto.getModuleName()));
+				mgr.setSvp(svpRepository.findByUsername(empdto.getReportingManager()));
+				
+				dvpRepository.save(mgr);
+				
+				employeeRepository.deleteById(emp.getId());
+				
+				
+			} else if(empdto.getDesignation().equalsIgnoreCase("Senior Vice President")) {
+				Svp mgr = new Svp();
+				
+				mgr.setFirstName(empdto.getFirstName());
+				mgr.setLastName(empdto.getLastName());
+				mgr.setStatus(empdto.getStatus());
+				mgr.setMobileNumber(empdto.getMobileNumber());
+				mgr.setDesignation("Senior Vice President");
+				mgr.setBranchName(empdto.getBranchName());
+				mgr.setCity(empdto.getCity());
+				mgr.setState(empdto.getState());
+				//mgr.setDepartment(dvpRepository.findByUsername(empdto.getReportingManager()).getDepartment());
+//				mgr.setProjectName(empdto.getProjectName());
+//				mgr.setModule(moduleRepository.findBymoduleName(empdto.getModuleName()));
+				//mgr.setSvp(svpRepository.findByUsername(empdto.getReportingManager()));
+				
+				svpRepository.save(mgr);
+				
+				employeeRepository.deleteById(emp.getId());
+				
+				
+			}
+		}else {
+			employeeRepository.save(emp);
+		}
 	}
 	
 	
 	
 	
+public void updateManager(Integer id,AddEmployeeDto empdto) {
+		
+		Manager emp = managerRepository.getById(id);
+		emp.setFirstName(empdto.getFirstName());
+		emp.setLastName(empdto.getLastName());
+		emp.setStatus(empdto.getStatus());
+		emp.setMobileNumber(empdto.getMobileNumber());
+		
+		emp.setBranchName(empdto.getBranchName());
+		emp.setCity(empdto.getCity());
+		emp.setState(empdto.getState());
+		emp.setDepartment(dvpRepository.findByUsername(empdto.getReportingManager()).getDepartment());
+		emp.setProjectName(empdto.getProjectName());
+		emp.setModule(moduleRepository.findBymoduleName(empdto.getModuleName()));
+		emp.setDvp(dvpRepository.findByUsername(empdto.getReportingManager()));
+		System.out.println("h");
+		
+		if(!(emp.getDesignation().equals(empdto.getDesignation()))) {
+			System.out.println("k");
+			 if(empdto.getDesignation().equals("Deputy Vice President")) {
+				Dvp mgr = new Dvp();
+				
+				mgr.setFirstName(empdto.getFirstName());
+				mgr.setLastName(empdto.getLastName());
+				mgr.setStatus(empdto.getStatus());
+				mgr.setMobileNumber(empdto.getMobileNumber());
+				mgr.setDesignation("Deputy Vice President");
+				mgr.setBranchName(empdto.getBranchName());
+				mgr.setCity(empdto.getCity());
+				mgr.setState(empdto.getState());
+				mgr.setDepartment(departmentRepository.findBydepartmentName(empdto.getDepartment()));
+//				mgr.setProjectName(empdto.getProjectName());
+//				mgr.setModule(moduleRepository.findBymoduleName(empdto.getModuleName()));
+				mgr.setSvp(svpRepository.findByUsername(empdto.getReportingManager()));
+				
+				dvpRepository.save(mgr);
+				
+				managerRepository.deleteById(emp.getId());
+				
+				
+			} else if(empdto.getDesignation().equals("Senior Vice President")) {
+				Svp mgr = new Svp();
+				
+				mgr.setFirstName(empdto.getFirstName());
+				mgr.setLastName(empdto.getLastName());
+				mgr.setStatus(empdto.getStatus());
+				mgr.setMobileNumber(empdto.getMobileNumber());
+				mgr.setDesignation("Senior Vice President");
+				mgr.setBranchName(empdto.getBranchName());
+				mgr.setCity(empdto.getCity());
+				mgr.setState(empdto.getState());
+				//mgr.setDepartment(dvpRepository.findByUsername(empdto.getReportingManager()).getDepartment());
+//				mgr.setProjectName(empdto.getProjectName());
+//				mgr.setModule(moduleRepository.findBymoduleName(empdto.getModuleName()));
+				//mgr.setSvp(svpRepository.findByUsername(empdto.getReportingManager()));
+				
+				svpRepository.save(mgr);
+				
+				managerRepository.deleteById(emp.getId());
+				
+				
+			}
+		}else {
+			managerRepository.save(emp);
+		}
+	}
+
+
+
+
+
+public void updateDvp(Integer id,AddEmployeeDto empdto) {
+	
+	Dvp emp = dvpRepository.getById(id);
+	emp.setFirstName(empdto.getFirstName());
+	emp.setLastName(empdto.getLastName());
+	emp.setStatus(empdto.getStatus());
+	emp.setMobileNumber(empdto.getMobileNumber());
+	
+	emp.setBranchName(empdto.getBranchName());
+	emp.setCity(empdto.getCity());
+	emp.setState(empdto.getState());
+	emp.setDepartment(departmentRepository.findBydepartmentName(empdto.getDepartment()));
+	
+	emp.setSvp(svpRepository.findByUsername(empdto.getReportingManager()));
+	
+	
+	if(!(emp.getDesignation().equals(empdto.getDesignation()))) {
+			
+		  if(empdto.getDesignation().equals("Senior Vice President")) {
+			Svp mgr = new Svp();
+			
+			mgr.setFirstName(empdto.getFirstName());
+			mgr.setLastName(empdto.getLastName());
+			mgr.setStatus(empdto.getStatus());
+			mgr.setMobileNumber(empdto.getMobileNumber());
+			mgr.setDesignation("Senior Vice President");
+			mgr.setBranchName(empdto.getBranchName());
+			mgr.setCity(empdto.getCity());
+			mgr.setState(empdto.getState());
+			//mgr.setDepartment(dvpRepository.findByUsername(empdto.getReportingManager()).getDepartment());
+//			mgr.setProjectName(empdto.getProjectName());
+//			mgr.setModule(moduleRepository.findBymoduleName(empdto.getModuleName()));
+			//mgr.setSvp(svpRepository.findByUsername(empdto.getReportingManager()));
+			
+			svpRepository.save(mgr);
+			
+			dvpRepository.deleteById(emp.getId());
+			
+			
+		}
+	}else {
+		dvpRepository.save(emp);
+	}
+}
+
+
+
+public void updateSvp(Integer id,AddEmployeeDto empdto) {
+	
+	Svp emp = svpRepository.getById(id);
+	emp.setFirstName(empdto.getFirstName());
+	emp.setLastName(empdto.getLastName());
+	emp.setStatus(empdto.getStatus());
+	emp.setMobileNumber(empdto.getMobileNumber());
+	
+	emp.setBranchName(empdto.getBranchName());
+	emp.setCity(empdto.getCity());
+	emp.setState(empdto.getState());
+//	emp.setDepartment(departmentRepository.findBydepartmentName(empdto.getDepartment()));
+//	
+//	emp.setSvp(svpRepository.findByUsername(empdto.getReportingManager()));
 	
 	
 	
+		svpRepository.save(emp);
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+}
 	
 	
 	
@@ -225,23 +404,7 @@ public class EmployeeService implements UserDetailsService {
 
 	 
 	
-//	@Override
-//	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//		// TODO Auto-generated method stub
-//	
-//		
-//		final Employee emp = this.employeeRepository.findByUsername(username);
-//		if(emp==null ) {
-//			final Manager mng = this.managerRepository.findByUsername(username);
-//			if(mng==null)
-//				throw new UsernameNotFoundException("User not found !!");
-//			else
-//				return new ManagerUserDetails(mng);
-//		}else {
-//			return new CustomUserDetails(emp);
-//		}
-//		
-//	}
+
 	 
 	
 	
@@ -273,19 +436,6 @@ public class EmployeeService implements UserDetailsService {
 	}
 	
 
-	
-
-//	 public ResponseEntity<?> getCurrentEmployee() {
-//			String user = JwtRequestFilter.CURRENT_USER;
-//			Employee emp = employeeRepository.findByUsername(user);
-//			if(emp == null) {
-//		        return new ResponseEntity<>(managerRepository.findByUsername(user), HttpStatus.OK);				
-//			}else {
-//	        return new ResponseEntity<>(emp, HttpStatus.OK);
-//			}
-//	 }
-
-		
 	 public ResponseEntity<?> getCurrentEmployee() {
 			String username = JwtRequestFilter.CURRENT_USER;
 			Employee emp = employeeRepository.findByUsername(username);

@@ -1,5 +1,7 @@
 package com.axis.axissaral.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,10 @@ public class ModuleService {
 		module1.setProject(projectRepository.findByprojectName(moduleDto.getProjectName()));
 		module1.setModuleDescription(moduleDto.getDescription());
 		moduleRepository.save(module1);
+	}
+	
+	public List<Module> findModules(){
+		return (List<Module>) moduleRepository.findAll();
 	}
 	
 
