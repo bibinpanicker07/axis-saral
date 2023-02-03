@@ -55,5 +55,11 @@ public class DocumentService {
 			throw new DocumentInvalidException("Error..Could not store file with name " + fileName + ". Please try again!");
 		}		
 	}
+	
+	public void deleteDocument(String documentId) 
+		{
+			documentRepository.deleteById(documentId);
+		}
+		
 
 }
